@@ -11,6 +11,7 @@ public class Slot {
 
     private int totalSold; // number of items sold
     private Item primaryItem; // the original item placed
+    private int totalRemainingItem;
 
 
     /**
@@ -24,9 +25,13 @@ public class Slot {
     Slot(Item item, int itemQuantity)
     {
         this.primaryItem = new Item(item);
+        this.totalRemainingItem = itemQuantity;
         totalSold = 0;
     }
 
+    public void setTotalRemainingItem(int totalRemainingItem) {
+        this.totalRemainingItem = totalRemainingItem;
+    }
 
     /**
      * This function sets a slot with an existing slot
