@@ -121,7 +121,7 @@ public class Main {
                             itemCalories = sc.nextFloat();
                             sc.nextLine();
 
-                            while(itemPrice < 0)
+                            while(itemCalories < 0)
                             {
                                 System.out.println("Error... Must be positive");
                                 System.out.print("Calories: ");

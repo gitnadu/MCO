@@ -313,7 +313,7 @@ public class VendingMachine {
         for (int i=0;i<this.CURRENTnumberOfSlots;i++)
         {
             // if the item is already mapped with another slot
-            if ((slots[i].getPrimaryItem().getName().equalsIgnoreCase(item.getName()))
+            if ((slots[i].getPrimaryItem().getName().equalsIgnoreCase(item.getName())))
             {
                 addStock(itemQuantity, item);
                 System.out.println("Since item already exists, adding stock to slot " + (i+1));
@@ -756,20 +756,20 @@ public class VendingMachine {
         int startingValue = 0;
 
         // get the minimum price from available slots
-        while((this.getSlot(startingValue).getItem()).size() == 0)
+        while((this.getSlot(startingValue).getTotalRemainingItem()) == 0)
         {
             startingValue++;
         }
 
-        minPrice = (this.getSlot(startingValue).getItem()).get(0).getPrice();
+        minPrice = (this.getSlot(startingValue)).getPrimaryItem().getPrice();
         
         for(int i=startingValue+1;i<this.getCURRENTnumberOfSlots();i++)
         {
-            if ((this.getSlot(startingValue).getItem()).size() != 0) // denotes it is available
+            if ( (this.getSlot(startingValue).getTotalRemainingItem() ) != 0) // denotes it is available
             {
-                if ((this.getSlot(i).getItem()).get(0).getPrice() < minPrice)
+                if ( this.getSlot(i).getPrimaryItem().getPrice() < minPrice)
                 {
-                    minPrice = (this.getSlot(i).getItem()).get(0).getPrice();
+                    minPrice = this.getSlot(i).getPrimaryItem().getPrice();
                 }
             }
         }
@@ -958,7 +958,6 @@ public class VendingMachine {
         // finding the item in the vending machine
         for(int j=0;j<CURRENTnumberOfItems;j++)
         {
-
             // if the item is found
             if (this.itemRecord[j].getName().equalsIgnoreCase(item.getName()))
             {
@@ -1000,6 +999,8 @@ public class VendingMachine {
                 }
             }
         }
+
+        return false;
     }
 
     /**
