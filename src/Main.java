@@ -97,8 +97,9 @@ public class Main {
                     
                     System.out.println("Congratulations!, you just created a regular vending machine with " + vendingmachine.getMAXnumberOfSlots()+ " empty slots");
                     System.out.println("\nA vending machine needs products inside! Kindly fill out the following information to add your first item!");;
-
-                    do
+                    // adding items in the machine itself
+                    // setting up items in the slot
+                        do
                     {
                         if (vendingmachine.getCURRENTnumberOfSlots() < vendingmachine.getMAXnumberOfSlots())
                         {
@@ -152,7 +153,21 @@ public class Main {
 
                             temp = new Item(itemName,itemPrice,itemCalories);
 
-                            if (vendingmachine.addSlot(temp, itemQuantity)) // adds the slot in the item, must return true
+                            int slotNumber;
+
+                            System.out.println(" At what slot do you intend to put this item?");
+                            vendingmachine.displaySlots();
+                            System.out.print(">> ");
+                            slotNumber = sc.nextInt();
+
+                            while(slotNumber<0 || slotNumber > vendingmachine.getMAXnumberOfSlots())
+                            {
+                                System.out.print("Error... Slot does not exist");
+                                System.out.print(">> ");
+                                slotNumber = sc.nextInt();
+                            }
+
+                            if (vendingmachine.addSlot(temp, itemQuantity, slotNumber)) // adds the slot in the item, must return true
                             {
                                 System.out.println("Loading...");
                                 System.out.println("Stocking...");
@@ -177,15 +192,19 @@ public class Main {
                         }
 
                     }while(slotAdd== 1);
+
+                    System.out.println("Items are now added in the machine. ");
+                    System.out.println("Readying Items....");
                     System.out.println("To ensure that the launch of the vending machine is successful, ");
-                    System.out.println("10 counts of each bill and coin are loaded in the machine by default");
+                    System.out.println("10 counts of each bill and coin are already loaded in the machine");
                     System.out.println("Would you like to add more money to provide change? ");
                     System.out.println("[1] Yes");
                     System.out.println("[2] No");
                     System.out.print(">> ");
                     addMoney = sc.nextInt();
                     sc.nextLine();
-                    
+
+                        // adding denominations of money in the machine for change
                     while(addMoney == 1)
                     {
                         

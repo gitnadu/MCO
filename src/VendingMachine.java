@@ -16,13 +16,15 @@ public class VendingMachine {
     private Slot[] slots;
     private Cash[] cash = new Cash[8];
     private ArrayList<Item>[] item; // each vending machine has stocks of items
+    private ArrayList<Transaction> transactions;
     private Item[] itemRecord;
     private float totalEarnings;
     private Transaction currentTransaction;
     private int MAXnumberOfSlots;
     private int CURRENTnumberOfSlots;
-    private ArrayList<Transaction> transactions;
     private int CURRENTnumberOfItems;
+
+
 
 
      /**
@@ -306,7 +308,7 @@ public class VendingMachine {
      * @return boolean on whether the adding a slot was a success or not
      */
 
-    public boolean addSlot(Item item, int itemQuantity)
+    public boolean addSlot(Item item, int itemQuantity, int slotNumber)
     {
         // check if the slot with the item already exist
 
@@ -333,7 +335,7 @@ public class VendingMachine {
  */
     public void displaySlots(){ 
 
-        for (int i = 0 ;i<this.CURRENTnumberOfSlots;i++)
+        for (int i = 0 ;i<this.getMAXnumberOfSlots();i++)
         {
             if (this.checkIfItemAvailable(this.slots[i].getPrimaryItem()))
             {
@@ -1013,5 +1015,9 @@ public class VendingMachine {
     {
         this.item[slotNumber-1].remove(this.item[slotNumber-1].size()-1);
         this.slots[slotNumber-1].setTotalSold(this.slots[slotNumber-1].getTotalSold() + 1);
+    }
+
+    public void setSlots(Slot[] slots) {
+        this.slots = slots;
     }
 }
