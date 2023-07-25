@@ -15,7 +15,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         // CREATING A VENDING MACHINE
-        VendingMachine vendingmachine = new VendingMachine(1, "placeholder");
+        RegularVendingMachine vendingmachine = new RegularVendingMachine(1, "placeholder");
         Item temp;
         String itemName;
         float itemPrice, itemCalories;
@@ -66,8 +66,6 @@ public class Main {
                     machine = sc.nextInt();
                     sc.nextLine();
 
-                    
-
                     if (machine == 1)
                     {
                         System.out.println("Creating a Regular Vending Machine...");
@@ -93,7 +91,7 @@ public class Main {
                             sc.nextLine(); // to remove the /n
                         }
                     // creating new vending machine
-                    vendingmachine = new VendingMachine(numberofslots,name);
+                    vendingmachine = new RegularVendingMachine(numberofslots,name);
                     
                     System.out.println("Congratulations!, you just created a regular vending machine with " + vendingmachine.getMAXnumberOfSlots()+ " empty slots");
                     System.out.println("\nA vending machine needs products inside! Kindly fill out the following information to add your first item!");;
