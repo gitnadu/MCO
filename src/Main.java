@@ -13,9 +13,11 @@ public class Main {
         int numberofslots;
         String name;
         Scanner sc = new Scanner(System.in);
-        
+
+        startingPage startingpage = new startingPage();
+
         // CREATING A VENDING MACHINE
-        RegularVendingMachine vendingmachine = new RegularVendingMachine(1, "placeholder");
+        RegularVendingMachine vendingmachine = new RegularVendingMachine("placeholder");
         Item temp;
         String itemName;
         float itemPrice, itemCalories;
@@ -91,7 +93,7 @@ public class Main {
                             sc.nextLine(); // to remove the /n
                         }
                     // creating new vending machine
-                    vendingmachine = new RegularVendingMachine(numberofslots,name);
+                    vendingmachine = new RegularVendingMachine(name);
                     
                     System.out.println("Congratulations!, you just created a regular vending machine with " + vendingmachine.getMAXnumberOfSlots()+ " empty slots");
                     System.out.println("\nA vending machine needs products inside! Kindly fill out the following information to add your first item!");;
@@ -358,7 +360,7 @@ public class Main {
                                 System.out.println("Total number of slots: " + vendingmachine.getCURRENTnumberOfSlots());
                                 for(int i=0;i<vendingmachine.getCURRENTnumberOfSlots();i++)
                                 {
-                                    System.out.println("Slot " + i + " " + (vendingmachine.getSlot(i)).getItem().get(i).getName() + " Quantity: "+ (vendingmachine.getSlot(i)).getItem().size());
+                                    System.out.println("Slot " + i + " " + (vendingmachine.getSlot(i)).getPrimaryItem().getName() + " Quantity: "+ vendingmachine.getSlot(i).getTotalRemainingItem());
                                 }
                                 System.out.println("Money in the bank");
                                 for(int i=0;i<8;i++)
@@ -475,12 +477,12 @@ public class Main {
 
                                         temp = new Item(itemName,itemPrice,itemCalories);
 
-                                        if (vendingmachine.addSlot(temp, itemQuantity))
+                                        if (vendingmachine.addSlot(temp, itemQuantity, 0))
                                         {
                                             System.out.println("Loading...");
                                             System.out.println("Stocking...");
                                             System.out.println("Successfully Added!");
-                                        }   
+                                        }
                                         else
                                         {
                                             System.out.println("Error");

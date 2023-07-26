@@ -21,6 +21,7 @@ public class RegularVendingMachine {
     private float totalEarnings;
     private Transaction currentTransaction;
     private int CURRENTnumberOfSlots;
+    private int MAXnumberOfSlots;
     private int CURRENTnumberOfItems;
 
 
@@ -42,6 +43,7 @@ public class RegularVendingMachine {
         this.CURRENTnumberOfSlots = 0;
         this.CURRENTnumberOfItems = 0;
         this.totalEarnings = 0;
+        MAXnumberOfSlots = 9;
         transactions = new ArrayList<>();
         cash[0] = new Cash(1);
         cash[1] = new Cash(5);
