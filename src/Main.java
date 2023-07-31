@@ -8,13 +8,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String argcs[])
     {
+        startingPageView startingpageview = new startingPageView();
+        startingPageController startingpagecontroller = new startingPageController(startingpageview);
+
+        //regularVM regular = new regularVM();
         int option = 1;
         int features;
         int numberofslots;
         String name;
         Scanner sc = new Scanner(System.in);
 
-        startingPage startingpage = new startingPage();
+        //startingPageView startingpage = new startingPageView();
 
         // CREATING A VENDING MACHINE
         RegularVendingMachine vendingmachine = new RegularVendingMachine("placeholder");

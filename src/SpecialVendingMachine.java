@@ -70,7 +70,7 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
     public ArrayList<Item> purchaseCustomizedItem() {
 
-        ArrayList<Item> temp = new ArrayList<Item>;
+        ArrayList<Item> temp = new ArrayList<Item>();
         for(int i = 0; i <customizedItem.size();i++)
         {
             temp.add(customizedItem.get(i));

@@ -1,16 +1,15 @@
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionListener;
 
-public class startingPage extends javax.swing.JFrame implements MouseListener {
+public class startingPageView extends javax.swing.JFrame{
 
     private JButton createREG;
     private JButton createSPE;
     private JLabel mainTitle;
     private JButton quitBut;
-    startingPage()
+    startingPageView()
     {
         mainTitle = new JLabel();
         createREG = new JButton();
@@ -22,12 +21,7 @@ public class startingPage extends javax.swing.JFrame implements MouseListener {
         mainTitle.setFont(new java.awt.Font("Segoe UI Light", 0, 35)); // NOI18N
         mainTitle.setText("Vending Machine Factory");
         mainTitle.setName(""); // NOI18N
-        mainTitle.addMouseListener(this)
-        {
-            public void mouseClicked(MouseEvent e) {
 
-            }
-        }
 
         createREG.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         createREG.setText("Create Regular Vending Machine");
@@ -73,5 +67,17 @@ public class startingPage extends javax.swing.JFrame implements MouseListener {
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
+    }
+
+    public void setcreateREGListener(ActionListener actionListener) {
+        this.createREG.addActionListener(actionListener);
+    }
+
+    public void setcreateSPEListener(ActionListener actionListener) {
+        this.createSPE.addActionListener(actionListener);
+    }
+
+    public void setQuitButListener(ActionListener actionListener) {
+        this.quitBut.addActionListener(actionListener);
     }
 }
