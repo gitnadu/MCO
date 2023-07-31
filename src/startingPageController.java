@@ -12,14 +12,16 @@ public class startingPageController {
         {
             public void actionPerformed(ActionEvent e) {
                 startingpageview.dispose();
-                regularVM regular = new regularVM();
+                regularvmOptionsView regularOptionPage = new regularvmOptionsView();
+                regularvmOptionsController regularoptioncontroller = new regularvmOptionsController(regularOptionPage);
             }
         });
 
         this.startingpageview.setcreateSPEListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                specialVM regular = new specialVM();
+                startingpageview.dispose();
+                specialvmOptionsView specialOptionPage = new specialvmOptionsView();
             }
         });
 
