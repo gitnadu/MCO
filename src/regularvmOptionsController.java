@@ -27,7 +27,9 @@ public class regularvmOptionsController {
         this.regularvmOptionsView.setcreateMachineButListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                regularVM regularmachine = new regularVM();
+                regularvmOptionsView.dispose();
+                regularVMview regularmachine = new regularVMview();
+                regularVMController regularmachinecontroller = new regularVMController(regularmachine);
             }
         });
 
