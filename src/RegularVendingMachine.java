@@ -24,6 +24,9 @@ public class RegularVendingMachine {
     private int MAXnumberOfSlots;
     private int CURRENTnumberOfItems;
 
+    private float storedCash;
+
+
 
 
 
@@ -38,8 +41,10 @@ public class RegularVendingMachine {
     RegularVendingMachine(String name)
     {
         this.name = name;
+
         item = new ArrayList[20];
         itemRecord =  new Item [20];
+
         this.CURRENTnumberOfSlots = 0;
         this.CURRENTnumberOfItems = 0;
         this.totalEarnings = 0;
@@ -53,6 +58,7 @@ public class RegularVendingMachine {
         cash[5] = new Cash(100);
         cash[6] = new Cash(200);
         cash[7] = new Cash(500);
+        storedCash = 0;
 
         for (int i=0;i<8;i++)
         {
@@ -60,6 +66,12 @@ public class RegularVendingMachine {
             this.cash[i].setTotalValue(10 * this.cash[i].getValue());
         }
         
+    }
+
+    public boolean addStoredCash(float money)
+    {
+        storedCash += money; // stores the money from the customer inside the machine
+        return true;
     }
     
     /**
@@ -153,69 +165,43 @@ public class RegularVendingMachine {
      * @return boolean on whether the transaction is a success or not
      */
 
-    public boolean doTransaction(float money) 
+    public boolean doTransaction(Item item)
     {
-
-        Scanner sc = new Scanner(System.in);
-        int slotNumber;
-
         // if the customer does not have any more money
-        if (money == 0)
+        if (this.storedCash== 0)
         {
-            System.out.println("No more money...");
             return false;
         }
-
         // if there are no new transaction
-        currentTransaction = new Transaction(money); // creates the transaction
-        
-        System.out.println("CURRENT BALANCE: " + this.currentTransaction.getBalance());
-        System.out.println("Slot [0] Cancel");
-        this.displaySlots();
-        System.out.println("What would you like to buy?");
-        System.out.print(">> ");
-        slotNumber = sc.nextInt();
+        currentTransaction = new Transaction(this.storedCash); // creates the transaction
 
-        while(slotNumber < 0 && slotNumber > this.CURRENTnumberOfSlots)
-        {
-            System.out.println("Error... Empty slot");
-            System.out.print(">> ");
-            slotNumber = sc.nextInt();
-            sc.nextLine();
-        }
-        //
-        if (slotNumber!= 0)
-        {
-            money = money - this.getSlot(slotNumber-1).getPrimaryItem().getPrice();
-        }
+        this.storedCash = this.storedCash - item.getPrice();
+
         // if the customer picks 0
-        if (slotNumber == 0)
+        if (item.getName() == null)
         {
-            this.currentTransaction.setBalance(money);
+            this.currentTransaction.setBalance(this.storedCash);
             this.currentTransaction.setTotalAmount(0);
             Item temp = new Item("BLANK",0,0);
             this.currentTransaction.setSelectedItem(temp);
 
             transactions.add(currentTransaction);
-            System.out.println("Printing Receipt...");
-            this.currentTransaction.printReceipt();
-
         }
-        else if (slotNumber != 0 & !(this.checkIfItemAvailable(this.getSlot(slotNumber-1).getPrimaryItem())))
+        else if ( !(this.checkIfItemAvailable(item)))
         {
             System.out.println("Item out of stock...");
         }
-        else if (( slotNumber != 0 && currentTransaction.selectItem(this.getSlot(slotNumber-1).getPrimaryItem()) && this.isChangeEnough(money) && (this.checkIfItemAvailable(this.getSlot(slotNumber-1).getPrimaryItem()))))
+        else if ( (currentTransaction.selectItem(item) && this.isChangeEnough(this.storedCash) && (this.checkIfItemAvailable(item)  )   ) )
         {
             System.out.println("Dispensing product.....");
             
             // sets the total amount for records
-            currentTransaction.setTotalAmount(this.getSlot(slotNumber-1).getPrimaryItem().getPrice());
+            currentTransaction.setTotalAmount(item.getPrice());
             
             // deducts the money purchase to inserted money
             currentTransaction.deductPurchase(currentTransaction.getTotalAmount());
 
-            this.purchaseItem(slotNumber); // gets the item inside
+            this.purchaseItem(item.getSlotNumber()); // gets the item inside
 
             // adds to the vending machines total earnings
             this.totalEarnings += currentTransaction.getTotalAmount();
@@ -228,11 +214,11 @@ public class RegularVendingMachine {
 
             return true;
         }
-        else if (!currentTransaction.selectItem(this.getSlot(slotNumber-1).getPrimaryItem()))
+        else if (!currentTransaction.selectItem(item))
         {
             System.out.println("Insufficient funds... Please insert more money.");
         }
-        else if (!this.isChangeEnough(money))
+        else if (!this.isChangeEnough(this.storedCash))
         {
             System.out.println("Change is not enough... Cancelling transaction");
         }
@@ -831,6 +817,10 @@ public class RegularVendingMachine {
             }
         }
         return totalCash;
+    }
+
+    public float getStoredCash() {
+        return storedCash;
     }
 
     /**

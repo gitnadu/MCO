@@ -29,7 +29,8 @@ public class regularvmOptionsController {
             public void actionPerformed(ActionEvent e) {
                 regularvmOptionsView.dispose();
                 regularVMview regularmachine = new regularVMview();
-                regularVMController regularmachinecontroller = new regularVMController(regularmachine);
+                RegularVendingMachine VMmodel = new RegularVendingMachine("Pizzaria");
+                regularVMController regularmachinecontroller = new regularVMController(regularmachine,VMmodel);
             }
         });
 

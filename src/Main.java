@@ -19,7 +19,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         //startingPageView startingpage = new startingPageView();
-
+        /**
         // CREATING A VENDING MACHINE
         RegularVendingMachine vendingmachine = new RegularVendingMachine("placeholder");
         Item temp;
@@ -537,4 +537,7 @@ public class Main {
 
     sc.close();
     }
+         */
 }
+}
+

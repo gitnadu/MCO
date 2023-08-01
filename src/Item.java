@@ -14,6 +14,7 @@ public class Item {
     private float calories;
     private float price;
     private String name;
+    private int slotNumber;
 
     /**
      *
@@ -28,6 +29,8 @@ public class Item {
         this.price = price;
         this.name = name;
     }
+
+
     /**
      *
      * Constructs an item object, with an item object
@@ -53,6 +56,9 @@ public class Item {
         return calories;
     }
 
+    public int getSlotNumber() {
+        return slotNumber;
+    }
 
     /**
      *
