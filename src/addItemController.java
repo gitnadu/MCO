@@ -51,6 +51,7 @@ public class addItemController {
         {
             (VMview.getSlotAreas())[i].setText("\nSlot " + i);
             (VMview.getSlotAreas())[i].append("\n\nName: " + VMmodel.getSlot(i).getPrimaryItem().getName() + "\n" + "Price: " + VMmodel.getSlot(i).getPrimaryItem().getPrice() + "\n" + "Calories: " + VMmodel.getSlot(i).getPrimaryItem().getCalories() + "\n");
+            (VMview.getSlotAreas())[i].append("Remaining" +  VMmodel.getquantityOfItem(VMmodel.getSlot(i).getPrimaryItem()));
         }
     }
 

@@ -23,7 +23,7 @@ public class Slot {
      */
     Slot(Item item)
     {
-        this.primaryItem = new Item(item);
+        this.primaryItem = item;
         totalSold = 0;
     }
 

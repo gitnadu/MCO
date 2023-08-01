@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class regularVMview extends javax.swing.JFrame{
@@ -39,9 +43,9 @@ public class regularVMview extends javax.swing.JFrame{
         titlePanel.setBackground(new java.awt.Color(0, 0, 0));
 
         titleLabel.setFont(new java.awt.Font("UD Digi Kyokasho NP-R", 0, 36)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(242, 242, 242));
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("title");
+        titleLabel.setVisible(true);
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
@@ -62,15 +66,16 @@ public class regularVMview extends javax.swing.JFrame{
 
         lcdPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        nameTextfield.setText("Name");
+        nameTextfield.setEditable(false);
 
-        caloriesTextfield.setText("Calories");
+        caloriesTextfield.setEditable(false);
 
-        priceTextfield.setText("Price");
+        priceTextfield.setEditable(false);
 
-        purchaseButton.setText("Purchase");
 
-        cancelButton.setText("Cancel");
+        purchaseButton.setText("✅");
+
+        cancelButton.setText("❌");
 
         nameLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(242, 242, 242));
@@ -188,9 +193,13 @@ public class regularVMview extends javax.swing.JFrame{
         balanceLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         balanceLabel.setText("Balance:");
 
-        itemTrayTextfield.setText("Item Tray");
+        itemTrayTextfield.setEditable(false);
+        itemTrayTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
+        itemTrayTextfield.setHorizontalAlignment(JTextField.CENTER);
 
-        changeTextfield.setText("Change");
+        changeTextfield.setEditable(false);
+        changeTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
+        changeTextfield.setHorizontalAlignment(JTextField.CENTER);
 
         putmoneyButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         putmoneyButton.setText("Put Money");
@@ -316,10 +325,9 @@ public class regularVMview extends javax.swing.JFrame{
                                                 .addComponent(changeTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         pack();
-        setVisible(true);
+        setVisible(false);
         setLocationRelativeTo(null);
     }// </editor-fold>
-
 
 
     public JTextField getBalanceTextfield() {
@@ -358,6 +366,9 @@ public class regularVMview extends javax.swing.JFrame{
         return itemTrayTextfield;
     }
 
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
 
     public void setreturnButtonListener(ActionListener actionListener) {
         this.returnButton.addActionListener(actionListener);
@@ -386,6 +397,12 @@ public class regularVMview extends javax.swing.JFrame{
     public void setstatusRVMTextfieldListener(ActionListener actionListener) {
         this.statusRVMTextfield.addActionListener(actionListener);
     }
+
+    public void setcancelButtonListener(ActionListener actionListener) {
+        this.cancelButton.addActionListener(actionListener);
+    }
+
+
 
     // setVisible(true);
     // pack();

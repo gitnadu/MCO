@@ -1,5 +1,6 @@
 
 
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -41,8 +42,15 @@ public class RegularVendingMachine {
     {
         this.name = name;
 
-        item = new ArrayList[20];
-        itemRecord =  new Item [20];
+        item = new ArrayList[9];
+        itemRecord =  new Item [9];
+
+        for(int i=0;i<9;i++)
+        {
+            item[i] = new ArrayList<Item>();
+        }
+
+
 
         this.CURRENTnumberOfSlots = 0;
         this.CURRENTnumberOfItems = 0;
@@ -134,9 +142,11 @@ public class RegularVendingMachine {
 
 
         Item tempItem = new Item(itemName,itemPrice,itemCalories);
+        itemRecord[CURRENTnumberOfItems] = new Item(tempItem);
 
         this.addStock(itemQuantity,tempItem);
         this.addSlot(tempItem,itemQuantity);
+        this.CURRENTnumberOfItems++;
 
         return true;
 
@@ -250,6 +260,7 @@ public class RegularVendingMachine {
         currentTransaction = new Transaction(this.storedCash); // creates the transaction
 
         this.storedCash = this.storedCash - item.getPrice();
+        this.currentTransaction.setBalance(this.storedCash);
 
         // if the customer picks 0
         if (item.getName() == null)
@@ -448,8 +459,7 @@ public class RegularVendingMachine {
      *
      * @return the name of the vending machine
      */
-    public String getName() { 
-
+    public String getName() {
         return name;
     }
 
@@ -516,8 +526,9 @@ public class RegularVendingMachine {
      *
      * @return boolean on whether the machine successfully gives the change or not
      */
-    public boolean giveChange(float money) 
+    public ArrayList<int> giveChange(float money)
     {
+        ArrayList<int> arrayOfChange = new ArrayList();
 
         if (money > 0 && money <= 9)
         {
@@ -528,6 +539,7 @@ public class RegularVendingMachine {
                     money -= 5;
                     this.cash[1].setCount( (this.cash[1].getCount()) - 1);
                     this.cash[1].setTotalValue(this.cash[1].getCount() * 5);
+                    arrayOfChange.add(5);
                     System.out.println("5-peso coin");
                 }
                 else if(money-1 >= 0 && this.cash[0].getCount() != 0)
@@ -535,6 +547,7 @@ public class RegularVendingMachine {
                     money --;
                     this.cash[0].setCount((this.cash[0].getCount()) - 1);
                     this.cash[0].setTotalValue(this.cash[0].getCount());
+                    arrayOfChange.add(1);
                     System.out.println("1-peso coin");
                 }
             }
@@ -550,6 +563,7 @@ public class RegularVendingMachine {
                     this.cash[4].setCount((this.cash[4].getCount()) - 1);
                     this.cash[4].setTotalValue(this.cash[4].getCount() * 50);
                     System.out.println("50-peso bill");
+                    arrayOfChange.add(50);
                 }
                 else if(money-20 >= 0 && this.cash[3].getCount() != 0)
                 {
@@ -557,12 +571,14 @@ public class RegularVendingMachine {
                     this.cash[3].setCount((this.cash[3].getCount()) - 1);
                     this.cash[3].setTotalValue(this.cash[3].getCount() * 20);
                     System.out.println("20-peso bill");
+                    arrayOfChange.add(20);
                 }
                 else if(money-10 >= 0 && this.cash[2].getCount() != 0)
                 {
                     money -= 10;
                     this.cash[2].setCount((this.cash[2].getCount())-1);
                     this.cash[2].setTotalValue(this.cash[2].getCount() * 10);
+                    arrayOfChange.add(10);
                     System.out.println("10-peso coin");
                 }
                 else if (money-5 >= 0 && this.cash[1].getCount() != 0)
@@ -570,6 +586,7 @@ public class RegularVendingMachine {
                     money -= 5;
                     this.cash[1].setCount((this.cash[1].getCount())-1);
                     this.cash[1].setTotalValue(this.cash[1].getCount() * 5);
+                    arrayOfChange.add(5);
                     System.out.println("5-peso coin");
                 }
                 else if(money-1 >= 0 && this.cash[0].getCount() != 0)
@@ -577,10 +594,11 @@ public class RegularVendingMachine {
                     money --;
                     this.cash[0].setCount((this.cash[0].getCount())-1);
                     this.cash[0].setTotalValue(this.cash[0].getCount());
+                    arrayOfChange.add(1);
                     System.out.println("1-peso coin");
+
                 }
             }
-            return true;
         }
         else if (money >= 100 && money <= 500)
         {
@@ -592,6 +610,7 @@ public class RegularVendingMachine {
                     this.cash[7].setCount((this.cash[7].getCount())-1);
                     this.cash[7].setTotalValue(this.cash[7].getCount() * 500);
                     System.out.println("500-peso bill");
+                    arrayOfChange.add(500);
                 }
                 else if (money-200 >= 0 && this.cash[6].getCount() != 0)
                 {
@@ -599,6 +618,7 @@ public class RegularVendingMachine {
                     this.cash[6].setCount((this.cash[6].getCount())-1);
                     this.cash[6].setTotalValue(this.cash[6].getCount() * 200);
                     System.out.println("200-peso bill");
+                    arrayOfChange.add(200);
                 }
                 else if (money-100 >= 0 && this.cash[5].getCount() != 0)
                 {
@@ -606,12 +626,14 @@ public class RegularVendingMachine {
                     this.cash[5].setCount((this.cash[5].getCount())-1);
                     this.cash[5].setTotalValue(this.cash[5].getCount() * 100);
                     System.out.println("100-peso bill");
+                    arrayOfChange.add(100);
                 }
                 else if (money-50 >= 0 && this.cash[4].getCount() != 0)
                 {
                     money -= 50;
                     this.cash[4].setCount((this.cash[4].getCount())-1);
                     this.cash[4].setTotalValue(this.cash[4].getCount() * 50);
+                    arrayOfChange.add(50);
 
                     System.out.println("50-peso bill");
                 }
@@ -620,6 +642,7 @@ public class RegularVendingMachine {
                     money -= 20;
                     this.cash[3].setCount((this.cash[3].getCount())-1);
                     this.cash[3].setTotalValue(this.cash[3].getCount() * 20);
+                    arrayOfChange.add(20);
                     System.out.println("20-peso coin");
                 }
                 else if(money-10 >= 0 && this.cash[2].getCount() != 0)
@@ -627,6 +650,7 @@ public class RegularVendingMachine {
                     money -= 10;
                     this.cash[2].setCount((this.cash[2].getCount())-1);
                     this.cash[2].setTotalValue(this.cash[2].getCount() * 10);
+                    arrayOfChange.add(10);
                     System.out.println("10-peso coin");
                 }
                 else if (money-5 >= 0 && this.cash[1].getCount() != 0)
@@ -634,6 +658,7 @@ public class RegularVendingMachine {
                     money -= 5;
                     this.cash[1].setCount((this.cash[1].getCount())-1);
                     this.cash[1].setTotalValue(this.cash[1].getCount() * 5);
+                    arrayOfChange.add(5);
                     System.out.println("5-peso coin");
                 }
                 else if(money-1 >= 0 && this.cash[0].getCount() != 0)
@@ -641,13 +666,17 @@ public class RegularVendingMachine {
                     money --;
                     this.cash[0].setCount((this.cash[0].getCount())-1);
                     this.cash[0].setTotalValue(this.cash[0].getCount());
+                    arrayOfChange.add(1);
                     System.out.println("1-peso coin");
                 }
             }
-            return true;
+        }
+        else if (money == 0)
+        {
+            arrayOfChange.add(0);
         }
 
-        return false;
+        return arrayOfChange;
     }
 
 
@@ -1020,31 +1049,9 @@ public class RegularVendingMachine {
 
     public void addStock(int stockQuantity, Item item)
     {
-        // finding the item in the vending machine
-        for(int j=0;j<CURRENTnumberOfItems;j++)
-        {
-            // if the item is found
-            if (this.itemRecord[j].getName().equalsIgnoreCase(item.getName()))
-            {
-                for (int i=0;i<stockQuantity;i++)
-                {
-                    if (this.item[i].size() + 1 <= 20)
-                    {
-                        this.item[i].add(item);
-                    }
-                    else
-                    {
-                        System.out.println("Reached maximum stock... Stopping.");
-                        i = stockQuantity; // stops the stocking
-                    }
-                }
-
-            }
-
-
-
+        for(int i = 0;i<stockQuantity;i++) {
+            this.item[CURRENTnumberOfItems].add(item);
         }
-
     }
 
     public boolean checkIfItemAvailable(Item item)
@@ -1058,7 +1065,8 @@ public class RegularVendingMachine {
                 if (this.item[i].size() > 0)
                 {
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }
@@ -1076,8 +1084,8 @@ public class RegularVendingMachine {
      */
     public void purchaseItem(int slotNumber)
     {
-        this.item[slotNumber-1].remove(this.item[slotNumber-1].size()-1);
-        this.slots[slotNumber-1].setTotalSold(this.slots[slotNumber-1].getTotalSold() + 1);
+        this.item[slotNumber].remove(this.item[slotNumber].size()-1);
+        this.slots[slotNumber].setTotalSold(this.slots[slotNumber].getTotalSold() + 1);
     }
 
     public void setSlots(Slot[] slots) {

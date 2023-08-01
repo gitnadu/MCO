@@ -1,24 +1,29 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class regularVMController {
+    regularvmOptionsView regularoptionsview;
     regularVMview machineView;
     RegularVendingMachine VMmodel;
     Item tempSelectedItem;
 
-    regularVMController(regularVMview regularMachineView, RegularVendingMachine VMmodel)
+    regularVMController(regularVMview regularMachineView, RegularVendingMachine VMmodel, regularvmOptionsView regularoptionsview)
     {
         this.machineView = regularMachineView;
         this.VMmodel = VMmodel;
+        this.regularoptionsview = regularoptionsview;
 
         machineView.getBalanceTextfield().setText("" + VMmodel.getStoredCash());
+        machineView.getTitleLabel().setText(VMmodel.getName());
+
+
 
         this.machineView.setreturnButtonListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
                 machineView.setVisible(false);
-                regularvmOptionsView regularoptionsview = new regularvmOptionsView();
-                regularvmOptionsController regularoptionsviewcontroller = new regularvmOptionsController(regularoptionsview);
+                regularoptionsview.setVisible(true);
             }
         });
 
@@ -34,11 +39,30 @@ public class regularVMController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                if (VMmodel.doTransaction(VMmodel.getSelectedItem()))
+                if(VMmodel.getSelectedItem() == null)
                 {
-                    machineView.getStatusRVMTextfield().setText("Purchase Success");
-                    machineView.getItemTrayTextfield().setText("" + VMmodel.getSelectedItem().getName());
+                    machineView.getStatusRVMTextfield().setText("Please select item..");
                 }
+                if ( (VMmodel.getStoredCash() - VMmodel.getSelectedItem().getPrice()) < -1)
+                {
+                    machineView.getStatusRVMTextfield().setText("Insufficient Funds!");
+                }
+                else if (VMmodel.checkIfItemAvailable(VMmodel.getSelectedItem()))
+                {
+                    if (VMmodel.doTransaction(VMmodel.getSelectedItem()))
+                    {
+                        machineView.getStatusRVMTextfield().setText("Purchase Success");
+                        machineView.getItemTrayTextfield().setText("" + VMmodel.getSelectedItem().getName());
+
+                        refreshSlots();
+                    }
+                    else
+                    {
+                        machineView.getStatusRVMTextfield().setText("Error");
+                    }
+                }
+
+
             }
         });
 
@@ -62,6 +86,14 @@ public class regularVMController {
             }
         });
 
+        this.machineView.setcancelButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                addItemView additemview = new addItemView();
+                addItemController additemcontroller =  new addItemController(additemview,VMmodel,machineView);
+            }
+        });
         this.machineView.setslotPanelButtonsListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
@@ -69,9 +101,16 @@ public class regularVMController {
                 {
                     if (e.getSource() == ((machineView.getSlotPanelButtons())[i]))
                     {
-                        VMmodel.setSelectedItem(VMmodel.getSlot(i).getPrimaryItem());
-                        machineView.getStatusRVMTextfield().setText("Selecting Item " + i);
-                        refreshLCD(i);
+                        if (VMmodel.getquantityOfItem(VMmodel.getSlot(i).getPrimaryItem()) > 0 )
+                        {
+                            VMmodel.setSelectedItem(VMmodel.getSlot(i).getPrimaryItem());
+                            machineView.getStatusRVMTextfield().setText("Selecting Item " + i);
+                            refreshLCD(i);
+                        }
+                        else
+                        {
+                            machineView.getStatusRVMTextfield().setText("No more stock !!");
+                        }
                     }
                 }
             }
@@ -79,12 +118,19 @@ public class regularVMController {
 
     }
 
+    public regularVMview getMachineView() {
+        return machineView;
+    }
+
     public void refreshSlots()
     {
-        for (int i=0;i<9;i++)
+        for (int i=0;i<VMmodel.getCURRENTnumberOfSlots();i++)
         {
-            (machineView.getSlotAreas())[i].setText("Name: " + VMmodel.getSlot(i).getPrimaryItem().getName() + "\n" + "Price: " + VMmodel.getSlot(i).getPrimaryItem().getPrice() + "\n" + "Calories: " + VMmodel.getSlot(i).getPrimaryItem().getCalories() + "\n");
-            (machineView.getSlotAreas())[i].append("Slot" + i);
+            (machineView.getSlotAreas())[i].setText("\nSlot " + i);
+            (machineView.getSlotAreas())[i].append("\n\nName: " + VMmodel.getSlot(i).getPrimaryItem().getName() + "\n" + "Price: " + VMmodel.getSlot(i).getPrimaryItem().getPrice() + "\n" + "Calories: " + VMmodel.getSlot(i).getPrimaryItem().getCalories() + "\n");
+            (machineView.getSlotAreas())[i].append("Remaining" +  VMmodel.getquantityOfItem(VMmodel.getSlot(i).getPrimaryItem()));
+
+            machineView.getBalanceTextfield().setText(""+VMmodel.getStoredCash());
         }
     }
 

@@ -4,37 +4,34 @@ import java.awt.event.ActionListener;
 public class regularvmOptionsController {
 
     regularvmOptionsView regularvmOptionsView;
+    regularVMview regularmachine;
+    RegularVendingMachine VMmodel;
+    regularVMController VMcontroller;
     regularvmOptionsController(regularvmOptionsView regularvmoptionsview)
     {
         this.regularvmOptionsView = regularvmoptionsview;
 
-        this.regularvmOptionsView. setreturnButListener(new ActionListener()
+        this.regularvmOptionsView.setreturnButListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                regularvmOptionsView.dispose();
-                startingPageView startingpagevew = new startingPageView();
-                startingPageController startingPageController = new startingPageController(startingpagevew);
+
+                    regularvmOptionsView.setVisible(false);
+                    regularvmOptionsView.setEnabled(false);
+                    startingPageView startingpagevew = new startingPageView();
+                    startingPageController startingPageController = new startingPageController(startingpagevew);
             }
         });
 
 
         this.regularvmOptionsView.setcreateMachineButtonListener(new ActionListener()
         {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        this.regularvmOptionsView.setmaintenanceButtonListener(new ActionListener()
-        {
             public void actionPerformed(ActionEvent e)
             {
-                regularvmOptionsView.dispose();
-                regularVMview regularmachine = new regularVMview();
-                RegularVendingMachine VMmodel = new RegularVendingMachine("Pizzaria");
-                regularVMController regularmachinecontroller = new regularVMController(regularmachine,VMmodel);
-                maintenanceRVMview maintenancervmview = new maintenanceRVMview();
-                maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview);
+                regularvmOptionsView.getConfirmButton().setEnabled(true);
+                regularvmOptionsView.getConfirmButton().setVisible(true);
+                regularvmOptionsView.getStatusTextfield().setVisible(true);
+                regularvmOptionsView.getStatusTextfield().setEditable(true);
+                regularvmOptionsView.getStatusTextfield().setText("Enter name ");
             }
         });
 
@@ -42,13 +39,55 @@ public class regularvmOptionsController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                regularvmOptionsView.dispose();
-                regularVMview regularmachine = new regularVMview();
-                RegularVendingMachine VMmodel = new RegularVendingMachine("Pizzaria");
-                regularVMController regularmachinecontroller = new regularVMController(regularmachine,VMmodel);
-                maintenanceRVMview maintenancervmview = new maintenanceRVMview();
-                maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview);
+                if (VMmodel == null)
+                {
+                    regularvmOptionsView.getStatusTextfield().setText("No machine created...");
+                }
+                else
+                {
+                    regularvmOptionsView.setVisible(false);
+                    VMcontroller.getMachineView().setVisible(true);
+                }
             }
         });
+
+        this.regularvmOptionsView.setmaintenanceButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if (VMmodel == null)
+                {
+                    regularvmOptionsView.getStatusTextfield().setText("No Machine Created...");
+                }
+                else
+                {
+                    maintenanceRVMview maintenancervmview = new maintenanceRVMview();
+                    maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview);
+                    regularvmOptionsView.setVisible(false);
+                    regularvmOptionsView.setEnabled(false);
+                }
+
+            }
+        });
+
+        this.regularvmOptionsView.setconfirmButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if (!(regularvmoptionsview.getStatusTextfield().getText().isEmpty()) || (regularvmoptionsview.getStatusTextfield().getText().compareTo("Enter name ") == 0)){
+                    VMmodel = new RegularVendingMachine(regularvmoptionsview.getStatusTextfield().getText()); // created the vending machine
+                    regularvmOptionsView.getStatusTextfield().setText("Machine Created !!");
+                    regularmachine = new regularVMview();
+                    VMcontroller = new regularVMController(regularmachine, VMmodel,regularvmOptionsView);
+                }
+                else
+                {
+                regularvmOptionsView.getStatusTextfield().setText("Enter name ");
+                }
+
+            }
+        });
+
+
     }
 }

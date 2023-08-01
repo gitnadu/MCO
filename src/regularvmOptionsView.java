@@ -7,57 +7,78 @@ public class regularvmOptionsView extends JFrame {
     regularvmOptionsView()
     {
         title = new javax.swing.JLabel();
-        returnBut = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
         maintenanceButton = new javax.swing.JButton();
         createMachineButton = new javax.swing.JButton();
         testFeaturesButton = new javax.swing.JButton();
+        statusTextfield = new javax.swing.JTextField();
+        confirmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 375));;
+        setSize(new java.awt.Dimension(600, 375));
+        setResizable(false);
 
-        title.setFont(new java.awt.Font("Segoe UI Light", 0, 35)); // NOI18N
+        title.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 35)); // NOI18N
         title.setText("Regular Vending Machine");
         title.setName(""); // NOI18N
 
-        returnBut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        returnBut.setText("Return");
-        returnBut.setToolTipText("");
+        returnButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
+        returnButton.setText("Return");
+        returnButton.setToolTipText("");
 
-        maintenanceButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        maintenanceButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         maintenanceButton.setText("Machine Maintenance");
         maintenanceButton.setToolTipText("");
 
-        createMachineButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        createMachineButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         createMachineButton.setText("Create vending machine");
         createMachineButton.setToolTipText("");
 
-        testFeaturesButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        testFeaturesButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         testFeaturesButton.setText("Test Vending Features");
         testFeaturesButton.setToolTipText("");
+
+
+        statusTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
+        statusTextfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        statusTextfield.setVisible(true);
+        statusTextfield.setEditable(false);
+
+        confirmButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 14)); // NOI18N
+        confirmButton.setText("Confirm");
+        confirmButton.setVisible(false);
+        confirmButton.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(maintenanceButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(createMachineButton, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                                        .addComponent(testFeaturesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(returnBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(115, Short.MAX_VALUE)
-                                .addComponent(title)
-                                .addGap(103, 103, 103))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addGap(96, 96, 96)
+                                                        .addComponent(title)
+                                                        .addGap(8, 8, 8))
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(93, 93, 93)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                .addComponent(maintenanceButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(createMachineButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(testFeaturesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(146, 146, 146)
+                                                .addComponent(statusTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(confirmButton)))
+                                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
+                                .addGap(32, 32, 32)
                                 .addComponent(title)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(createMachineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -66,11 +87,12 @@ public class regularvmOptionsView extends JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(maintenanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(returnBut, javax.swing.GroupLayout.PREFERRED_SIZE, 31, Short.MAX_VALUE)
-                                .addGap(11, 11, 11))
-
-
-
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(statusTextfield, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                                        .addComponent(confirmButton))
+                                .addGap(12, 12, 12)
+                                .addComponent(returnButton)
+                                .addGap(29, 29, 29))
         );
         pack();
         setVisible(true);
@@ -78,12 +100,12 @@ public class regularvmOptionsView extends JFrame {
 
     }
 
-    public void setreturnButListener(ActionListener actionListener) {
-        this.returnBut.addActionListener(actionListener);
+    public JTextField getStatusTextfield() {
+        return statusTextfield;
     }
 
-    public void setmaintenanceButtonListener(ActionListener actionListener) {
-        this.maintenanceButton.addActionListener(actionListener);
+    public JButton getConfirmButton() {
+        return confirmButton;
     }
 
     public void setcreateMachineButtonListener(ActionListener actionListener) {
@@ -94,9 +116,25 @@ public class regularvmOptionsView extends JFrame {
         this.testFeaturesButton.addActionListener(actionListener);
     }
 
-    private javax.swing.JButton returnBut;
-    private javax.swing.JButton maintenanceButton;
+    public void setmaintenanceButtonListener(ActionListener actionListener) {
+        this.maintenanceButton.addActionListener(actionListener);
+    }
+
+    public void setconfirmButtonListener(ActionListener actionListener) {
+        this.confirmButton.addActionListener(actionListener);
+    }
+
+
+    public void setreturnButListener(ActionListener actionListener) {
+        this.returnButton.addActionListener(actionListener);
+    }
+
+
+    private javax.swing.JButton confirmButton;
     private javax.swing.JButton createMachineButton;
+    private javax.swing.JButton maintenanceButton;
+    private javax.swing.JButton returnButton;
+    private javax.swing.JTextField statusTextfield;
     private javax.swing.JButton testFeaturesButton;
     private javax.swing.JLabel title;
 }

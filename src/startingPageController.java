@@ -11,7 +11,7 @@ public class startingPageController {
         this.startingpageview.setcreateREGListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                startingpageview.dispose();
+                startingpageview.setVisible(false);
                 regularvmOptionsView regularOptionPage = new regularvmOptionsView();
                 regularvmOptionsController regularoptioncontroller = new regularvmOptionsController(regularOptionPage);
             }
@@ -20,7 +20,7 @@ public class startingPageController {
         this.startingpageview.setcreateSPEListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                startingpageview.dispose();
+                startingpageview.setVisible(false);
                 specialvmOptionsView specialOptionPage = new specialvmOptionsView();
             }
         });
