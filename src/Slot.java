@@ -11,7 +11,6 @@ public class Slot {
 
     private int totalSold; // number of items sold
     private Item primaryItem; // the original item placed
-    private int totalRemainingItem;
 
 
     /**
@@ -19,18 +18,13 @@ public class Slot {
      * the item object, that can only be purchased through this slot.
      *
      * @param item the item to be placed in the slot
-     * @param itemQuantity the initial quantity of the item in the slot
+     * @
      *
      */
-    Slot(Item item, int itemQuantity)
+    Slot(Item item)
     {
         this.primaryItem = new Item(item);
-        this.totalRemainingItem = itemQuantity;
         totalSold = 0;
-    }
-
-    public void setTotalRemainingItem(int totalRemainingItem) {
-        this.totalRemainingItem = totalRemainingItem;
     }
 
     /**
@@ -109,7 +103,4 @@ public class Slot {
         this.totalSold = totalSold;
     }
 
-    public int getTotalRemainingItem() {
-        return totalRemainingItem;
-    }
 }

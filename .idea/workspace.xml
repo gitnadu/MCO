@@ -6,12 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="198b086d-340e-4810-8f64-9471bb876a21" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RegularVendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegularVendingMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Slot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/insertMoneyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/insertMoneyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/regularVMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularVMController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/regularVMview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularVMview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/regularvmOptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularvmOptionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/regularvmOptionsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularvmOptionsView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

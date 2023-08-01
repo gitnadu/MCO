@@ -26,8 +26,7 @@ public class RegularVendingMachine {
 
     private float storedCash;
 
-
-
+    private Item selectedItem;
 
 
      /**
@@ -66,6 +65,81 @@ public class RegularVendingMachine {
             this.cash[i].setTotalValue(10 * this.cash[i].getValue());
         }
         
+    }
+
+    public void setSelectedItem(Item selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
+
+    public int getquantityOfItem(Item item)
+    {
+        for(int i=0;i<this.CURRENTnumberOfItems;i++) {
+            if ((this.itemRecord[i].getName()).compareTo(item.getName()) == 0) {
+                return this.item[i].size();
+            }
+        }
+        return 0;
+    }
+
+    public boolean addItem(String itemName, Float itemPrice, Float itemCalories, Integer itemQuantity)
+    {
+        if (itemPrice < 0)
+        {
+            return false;
+        }
+
+        if (itemCalories < 0)
+        {
+            return false;
+        }
+
+        if (itemQuantity < 0)
+        {
+            return false;
+        }
+
+        for(int i=0;i<this.CURRENTnumberOfItems;i++)
+        {
+            // if found
+            if ((this.itemRecord[i].getName()).equalsIgnoreCase(itemName))
+            {
+                // if empty
+                if((this.item[i]).size() == 0)
+                {
+                    this.addStock(itemQuantity, this.itemRecord[i]); //  supply with the original product
+                    return true;
+                }
+                else if (((this.item[i]).size() + itemQuantity) >= 10 && ((this.item[i]).size() + itemQuantity) <= 20)
+                {
+                    this.addStock(itemQuantity, this.itemRecord[i]); //  supply with the original product
+                    return true;
+                }
+                else if (((this.item[i]).size() + itemQuantity) < 10)
+                {
+                    System.out.println("Restock Failure... The slot should have at least 10 items.");
+                    return false;
+                }
+                else
+                {
+                    System.out.println("Restock Failure... Full stock");
+                    return false;
+                }
+
+            }
+        }
+
+
+        Item tempItem = new Item(itemName,itemPrice,itemCalories);
+
+        this.addStock(itemQuantity,tempItem);
+        this.addSlot(tempItem,itemQuantity);
+
+        return true;
+
     }
 
     public boolean addStoredCash(float money)
@@ -293,7 +367,7 @@ public class RegularVendingMachine {
      * @return boolean on whether the adding a slot was a success or not
      */
 
-    public boolean addSlot(Item item, int itemQuantity, int slotNumber)
+    public boolean addSlot(Item item, int itemQuantity)
     {
         // check if the slot with the item already exist
 
@@ -308,7 +382,7 @@ public class RegularVendingMachine {
             }
         }
 
-        slots[CURRENTnumberOfSlots] = new Slot(item, itemQuantity);
+        slots[CURRENTnumberOfSlots] = new Slot(item);
         this.CURRENTnumberOfSlots+=1;
         return true;
     }
@@ -324,7 +398,7 @@ public class RegularVendingMachine {
         {
             if (this.checkIfItemAvailable(this.slots[i].getPrimaryItem()))
             {
-                System.out.println("Slot [" + (i+1) + "] " + ( this.getSlot(i) ).getPrimaryItem().getName() + "     Remaining: "+ (this.getSlot(i)).getTotalRemainingItem() + "      Calories: " + (this.getSlot(i)).getPrimaryItem().getCalories() + "        Price: " + (this.getSlot(i)).getPrimaryItem().getPrice() );
+                System.out.println("Slot [" + (i+1) + "] " + ( this.getSlot(i) ).getPrimaryItem().getName() + "     Remaining: "+ (this.getSlot(i)) + "      Calories: " + (this.getSlot(i)).getPrimaryItem().getCalories() + "        Price: " + (this.getSlot(i)).getPrimaryItem().getPrice() );
             }
             else
             {
@@ -743,7 +817,7 @@ public class RegularVendingMachine {
         int startingValue = 0;
 
         // get the minimum price from available slots
-        while((this.getSlot(startingValue).getTotalRemainingItem()) == 0)
+        while((this.getquantityOfItem(this.getSlot(startingValue).getPrimaryItem())) == 0)
         {
             startingValue++;
         }
@@ -752,7 +826,7 @@ public class RegularVendingMachine {
         
         for(int i=startingValue+1;i<this.getCURRENTnumberOfSlots();i++)
         {
-            if ( (this.getSlot(startingValue).getTotalRemainingItem() ) != 0) // denotes it is available
+            if ( ((this.getquantityOfItem(this.getSlot(startingValue).getPrimaryItem())) ) != 0) // denotes it is available
             {
                 if ( this.getSlot(i).getPrimaryItem().getPrice() < minPrice)
                 {

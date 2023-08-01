@@ -17,27 +17,37 @@ public class regularvmOptionsController {
             }
         });
 
-        this.regularvmOptionsView.setmaintenanceButListener(new ActionListener()
+
+        this.regularvmOptionsView.setcreateMachineButtonListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+
             }
         });
 
-        this.regularvmOptionsView.setcreateMachineButListener(new ActionListener()
+        this.regularvmOptionsView.setmaintenanceButtonListener(new ActionListener()
         {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 regularvmOptionsView.dispose();
                 regularVMview regularmachine = new regularVMview();
                 RegularVendingMachine VMmodel = new RegularVendingMachine("Pizzaria");
                 regularVMController regularmachinecontroller = new regularVMController(regularmachine,VMmodel);
+                maintenanceRVMview maintenancervmview = new maintenanceRVMview();
+                maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview);
             }
         });
 
-        this.regularvmOptionsView.settestFeaturesButListener(new ActionListener()
+        this.regularvmOptionsView.settestFeaturesButtonListener(new ActionListener()
         {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+            public void actionPerformed(ActionEvent e)
+            {
+                regularvmOptionsView.dispose();
+                regularVMview regularmachine = new regularVMview();
+                RegularVendingMachine VMmodel = new RegularVendingMachine("Pizzaria");
+                regularVMController regularmachinecontroller = new regularVMController(regularmachine,VMmodel);
+                maintenanceRVMview maintenancervmview = new maintenanceRVMview();
+                maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview);
             }
         });
     }

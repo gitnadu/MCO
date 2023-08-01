@@ -154,28 +154,34 @@ public class regularVMview extends javax.swing.JFrame{
         newPanelSlots.setLayout(new GridLayout(3,3,5, 5));
         slotPanel.add(newPanelSlots);
 
-        JPanel[] slotPanels = new JPanel[9];
+        slotPanels = new JPanel[9];
+        slotAreas = new JTextArea[9];
 
-        ArrayList<JPanel> trueSlots = new ArrayList();
+        trueSlots = new ArrayList();
 
         for (int i=0;i<9;i++)
         {
             slotPanels[i] = new JPanel();
+            slotAreas[i] = new JTextArea();
+        }
+
+        for (int i=0;i<9;i++)
+        {
+            slotAreas[i].setRows(6);
+            slotAreas[i].setSize(new Dimension(40, 40));
+            slotAreas[i].setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 14));
         }
 
         for (int i=0;i<9;i++)
         {
             slotPanels[i].setBackground(new java.awt.Color(255-i*10, 255-i*10, 255-i*10));
             slotPanels[i].setSize(new Dimension(40, 40));
-        }
-        for (int i=0;i<9;i++)
-        {
-            trueSlots.add(slotPanels[i]);
-        }
+            slotPanels[i].add(slotAreas[i]);
 
+        }
         for (int i=0;i<9;i++)
         {
-            newPanelSlots.add(trueSlots.get(i));
+            newPanelSlots.add(slotPanels[i]);
         }
 
 
@@ -218,7 +224,7 @@ public class regularVMview extends javax.swing.JFrame{
         newButtonsPanel.setLayout(new GridLayout(3,3,5, 5));
         buttonsPanel.add(newButtonsPanel);
 
-        JButton[] slotPanelButtons = new JButton[9];
+        slotPanelButtons = new JButton[9];
 
         for (int i=0;i<9;i++)
         {
@@ -314,9 +320,44 @@ public class regularVMview extends javax.swing.JFrame{
         setLocationRelativeTo(null);
     }// </editor-fold>
 
+
+
     public JTextField getBalanceTextfield() {
         return balanceTextfield;
     }
+
+    public ArrayList<JPanel> getTrueSlots() {
+        return trueSlots;
+    }
+
+    public JTextArea[] getSlotAreas() {
+        return slotAreas;
+    }
+
+    public JButton[] getSlotPanelButtons() {
+        return slotPanelButtons;
+    }
+
+    public JTextField getNameTextfield() {
+        return nameTextfield;
+    }
+
+    public JTextField getPriceTextfield() {
+        return priceTextfield;
+    }
+
+    public JTextField getCaloriesTextfield() {
+        return caloriesTextfield;
+    }
+
+    public JTextField getStatusRVMTextfield() {
+        return statusRVMTextfield;
+    }
+
+    public JTextField getItemTrayTextfield() {
+        return itemTrayTextfield;
+    }
+
 
     public void setreturnButtonListener(ActionListener actionListener) {
         this.returnButton.addActionListener(actionListener);
@@ -328,6 +369,22 @@ public class regularVMview extends javax.swing.JFrame{
 
     public void setputmoneyButtonListener(ActionListener actionListener) {
         this.putmoneyButton.addActionListener(actionListener);
+    }
+
+    public void setadditemButtonListener(ActionListener actionListener) {
+        this.additemButton.addActionListener(actionListener);
+    }
+
+    public void setslotPanelButtonsListener(ActionListener actionListener)
+    {
+        for(int i=0;i<5;i++)
+        {
+            slotPanelButtons[i].addActionListener(actionListener);
+        }
+    }
+
+    public void setstatusRVMTextfieldListener(ActionListener actionListener) {
+        this.statusRVMTextfield.addActionListener(actionListener);
     }
 
     // setVisible(true);
@@ -353,6 +410,13 @@ public class regularVMview extends javax.swing.JFrame{
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JTextField statusRVMTextfield;
+
+    private JPanel[] slotPanels;
+    private JTextArea[] slotAreas;
+
+    private ArrayList<JPanel> trueSlots;
+
+    private JButton[] slotPanelButtons;
 
 
 
