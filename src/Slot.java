@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Slot {
 
-    private int totalSold; // number of items sold
     private Item primaryItem; // the original item placed
 
 
@@ -24,7 +23,6 @@ public class Slot {
     Slot(Item item)
     {
         this.primaryItem = item;
-        totalSold = 0;
     }
 
     /**
@@ -36,7 +34,6 @@ public class Slot {
     public void anotherSlot(Slot another)
     {
         this.primaryItem = another.getPrimaryItem();
-        this.totalSold = another.getTotalSold();
     }
 
 
@@ -70,10 +67,6 @@ public class Slot {
      *
      * @return the total sold
      */
-    public int getTotalSold() {
-
-        return totalSold;
-    }
 
 
     /**
@@ -99,8 +92,5 @@ public class Slot {
         this.primaryItem = primaryItem;
     }
 
-    public void setTotalSold(int totalSold) {
-        this.totalSold = totalSold;
-    }
 
 }

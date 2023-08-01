@@ -86,7 +86,7 @@ public class RegularVendingMachine {
     public int getquantityOfItem(Item item)
     {
         for(int i=0;i<this.CURRENTnumberOfItems;i++) {
-            if ((this.itemRecord[i].getName()).compareTo(item.getName()) == 0) {
+            if ((this.itemRecord[i].getName()).equalsIgnoreCase(item.getName())) {
                 return this.item[i].size();
             }
         }
@@ -118,12 +118,12 @@ public class RegularVendingMachine {
                 // if empty
                 if((this.item[i]).size() == 0)
                 {
-                    this.addStock(itemQuantity, this.itemRecord[i]); //  supply with the original product
+                    this.addStock(itemQuantity, this.itemRecord[i],i); //  supply with the original product
                     return true;
                 }
                 else if (((this.item[i]).size() + itemQuantity) >= 10 && ((this.item[i]).size() + itemQuantity) <= 20)
                 {
-                    this.addStock(itemQuantity, this.itemRecord[i]); //  supply with the original product
+                    this.addStock(itemQuantity, this.itemRecord[i],i); //  supply with the original product
                     return true;
                 }
                 else if (((this.item[i]).size() + itemQuantity) < 10)
@@ -143,10 +143,11 @@ public class RegularVendingMachine {
 
         Item tempItem = new Item(itemName,itemPrice,itemCalories);
         itemRecord[CURRENTnumberOfItems] = new Item(tempItem);
+        itemRecord[CURRENTnumberOfItems].setSlotNumber(CURRENTnumberOfItems);
 
-        this.addStock(itemQuantity,tempItem);
+        this.addStock(itemQuantity,tempItem,this.CURRENTnumberOfItems);
         this.addSlot(tempItem,itemQuantity);
-        this.CURRENTnumberOfItems++;
+        this.CURRENTnumberOfItems += 1;
 
         return true;
 
@@ -168,22 +169,21 @@ public class RegularVendingMachine {
 
     public boolean restockItem(String itemName, int itemQuantity)
     {
-
         // check the if the item exists in the inventory
         for(int i=0;i<this.CURRENTnumberOfItems;i++)
         {
             // if found
-            if ((this.itemRecord[i].getName()).equalsIgnoreCase(itemName))
+            if ((this.itemRecord[i].getName()).compareTo(itemName)==0)
             {
                 // if empty
                 if((this.item[i]).size() == 0)
                 {
-                    this.addStock(itemQuantity, this.itemRecord[i]); //  supply with the original product
+                    this.addStock(itemQuantity, this.itemRecord[i],i); //  supply with the original product
                     return true;
                 }
                 else if (((this.item[i]).size() + itemQuantity) >= 10 && ((this.item[i]).size() + itemQuantity) <= 20)
                 {
-                    this.addStock(itemQuantity, this.itemRecord[i]); //  supply with the original product
+                    this.addStock(itemQuantity, this.itemRecord[i],i); //  supply with the original product
                     return true;
                 }
                 else if (((this.item[i]).size() + itemQuantity) < 10)
@@ -259,9 +259,6 @@ public class RegularVendingMachine {
         // if there are no new transaction
         currentTransaction = new Transaction(this.storedCash); // creates the transaction
 
-        this.storedCash = this.storedCash - item.getPrice();
-        this.currentTransaction.setBalance(this.storedCash);
-
         // if the customer picks 0
         if (item.getName() == null)
         {
@@ -293,6 +290,10 @@ public class RegularVendingMachine {
 
             // records the current Transaction
             transactions.add(currentTransaction);
+
+            this.storedCash = this.storedCash - item.getPrice();
+
+            this.currentTransaction.setBalance(this.storedCash);
 
             System.out.println("\nPrinting receipt...\n\n");
             this.currentTransaction.printReceipt();
@@ -326,6 +327,18 @@ public class RegularVendingMachine {
         this.totalEarnings = 0;
         
         return totalEarnings;
+    }
+
+    public int getCURRENTnumberOfItems() {
+        return CURRENTnumberOfItems;
+    }
+
+    public Item[] getItemRecord() {
+        return itemRecord;
+    }
+
+    public ArrayList<Item>[] getItem() {
+        return item;
     }
 
     /**
@@ -387,7 +400,7 @@ public class RegularVendingMachine {
             // if the item is already mapped with another slot
             if ((slots[i].getPrimaryItem().getName().equalsIgnoreCase(item.getName())))
             {
-                addStock(itemQuantity, item);
+                addStock(itemQuantity, item,i);
                 System.out.println("Since item already exists, adding stock to slot " + (i+1));
                 return true;
             }
@@ -483,7 +496,7 @@ public class RegularVendingMachine {
 
             for(int i=0;i< this.CURRENTnumberOfSlots ;i++)
             {   
-                System.out.println("Slot "+ (i+1) +"        Item: "+ ((this.getSlot(i)).getPrimaryItem().getName()) + "     Total Sold: " + (this.getSlot(i)).getTotalSold() );
+                System.out.println("Item: " + this.itemRecord[i].getName() + "     Total Sold: " + this.itemRecord[i].getTotalSold() );
             }
 
             System.out.println("Total Claimable Earnings: " + totalEarnings);
@@ -495,7 +508,9 @@ public class RegularVendingMachine {
         }
     }
 
-
+    public void setStoredCash(float storedCash) {
+        this.storedCash = storedCash;
+    }
 
     /**
      *
@@ -526,9 +541,9 @@ public class RegularVendingMachine {
      *
      * @return boolean on whether the machine successfully gives the change or not
      */
-    public ArrayList<int> giveChange(float money)
+    public ArrayList<Integer> giveChange(float money)
     {
-        ArrayList<int> arrayOfChange = new ArrayList();
+        ArrayList<Integer> arrayOfChange = new ArrayList();
 
         if (money > 0 && money <= 9)
         {
@@ -551,7 +566,6 @@ public class RegularVendingMachine {
                     System.out.println("1-peso coin");
                 }
             }
-            return true;
         }
         else if (money >= 10 && money <= 99)
         {
@@ -1047,11 +1061,13 @@ public class RegularVendingMachine {
         
     }
 
-    public void addStock(int stockQuantity, Item item)
+    public void addStock(int stockQuantity, Item item, int index)
     {
-        for(int i = 0;i<stockQuantity;i++) {
-            this.item[CURRENTnumberOfItems].add(item);
+
+        for(int j = 0;j<stockQuantity;j++) {
+            this.item[index].add(item);
         }
+
     }
 
     public boolean checkIfItemAvailable(Item item)
@@ -1085,7 +1101,7 @@ public class RegularVendingMachine {
     public void purchaseItem(int slotNumber)
     {
         this.item[slotNumber].remove(this.item[slotNumber].size()-1);
-        this.slots[slotNumber].setTotalSold(this.slots[slotNumber].getTotalSold() + 1);
+        this.itemRecord[slotNumber].setTotalSold(this.itemRecord[slotNumber].getTotalSold() + 1);
     }
 
     public void setSlots(Slot[] slots) {

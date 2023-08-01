@@ -62,7 +62,7 @@ public class regularvmOptionsController {
                 else
                 {
                     maintenanceRVMview maintenancervmview = new maintenanceRVMview();
-                    maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview);
+                    maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview,VMmodel,regularvmOptionsView);
                     regularvmOptionsView.setVisible(false);
                     regularvmOptionsView.setEnabled(false);
                 }

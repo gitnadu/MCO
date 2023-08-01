@@ -1,7 +1,12 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class maintenanceRVMview extends JFrame {
+    private javax.swing.JButton checknewPriceButton;
     private javax.swing.JButton collectEarningsButtons;
+    private javax.swing.JButton eksNewPriceButton;
+    private javax.swing.JButton eksrestockButton;
     private javax.swing.JTextField itemNameTextfield;
     private javax.swing.JLabel itemnameNewPriceLabel;
     private javax.swing.JLabel newPriceLabel;
@@ -12,6 +17,8 @@ public class maintenanceRVMview extends JFrame {
     private javax.swing.JLabel restockItemNameLabel;
     private javax.swing.JLabel restockQuantityLabel;
     private javax.swing.JTextField restockQuantityTextfield;
+    private javax.swing.JButton restockcheckButton;
+    private javax.swing.JButton returnButton;
     private javax.swing.JButton setnewpriceButton;
     private javax.swing.JLabel titlePanel;
     private javax.swing.JButton totalSalesButton;
@@ -22,7 +29,6 @@ public class maintenanceRVMview extends JFrame {
         collectEarningsButtons = new javax.swing.JButton();
         setnewpriceButton = new javax.swing.JButton();
         replenishChangeButton = new javax.swing.JButton();
-        totalSalesButton = new javax.swing.JButton();
         newpricenameTextfield = new javax.swing.JTextField();
         newPriceLabel = new javax.swing.JLabel();
         itemnameNewPriceLabel = new javax.swing.JLabel();
@@ -31,8 +37,17 @@ public class maintenanceRVMview extends JFrame {
         restockQuantityLabel = new javax.swing.JLabel();
         restockItemNameLabel = new javax.swing.JLabel();
         restockQuantityTextfield = new javax.swing.JTextField();
+        totalSalesButton = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
+        restockcheckButton = new javax.swing.JButton();
+        eksrestockButton = new javax.swing.JButton();
+        checknewPriceButton = new javax.swing.JButton();
+        eksNewPriceButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        setSize(new Dimension(600,425));
+        setPreferredSize(new Dimension(600,425));
 
         titlePanel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 35)); // NOI18N
         titlePanel.setText("Test Regular Vending Machine");
@@ -54,79 +69,112 @@ public class maintenanceRVMview extends JFrame {
         replenishChangeButton.setText("Replenish Change");
         replenishChangeButton.setToolTipText("");
 
+        newpricenameTextfield.setVisible(false); // name of the item to be changed
+
+        newPriceLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
+        newPriceLabel.setText("New Price:");
+        newPriceLabel.setVisible(false);
+
+        itemnameNewPriceLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
+        itemnameNewPriceLabel.setText("Item name:");
+        itemnameNewPriceLabel.setVisible(false);
+
+        newpriceTextfield.setVisible(false);// new price
+
+        itemNameTextfield.setVisible(false);// item name to be restocked
+
+        restockQuantityLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
+        restockQuantityLabel.setText("Quantity:");
+        restockQuantityLabel.setVisible(false);
+
+        restockItemNameLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
+        restockItemNameLabel.setText("Item name:");
+        restockItemNameLabel.setVisible(false);
+
+        restockQuantityTextfield.setVisible(false);// quantity to be stocked
+
         totalSalesButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         totalSalesButton.setText("Total Sales");
         totalSalesButton.setToolTipText("");
 
-        newpricenameTextfield.setText("Item Name");
+        returnButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 14)); // NOI18N
+        returnButton.setText("Return");
 
-        newPriceLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
-        newPriceLabel.setText("New Price:");
+        restockcheckButton.setText("jButton1");
+        restockcheckButton.setVisible(false);
+        restockcheckButton.setEnabled(false);
 
-        itemnameNewPriceLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
-        itemnameNewPriceLabel.setText("Item name:");
+        eksrestockButton.setText("jButton1");
+        eksrestockButton.setVisible(false);
+        eksrestockButton.setEnabled(false);
 
-        newpriceTextfield.setText("New Price");
+        checknewPriceButton.setText("jButton1");
+        checknewPriceButton.setVisible(false);
+        checknewPriceButton.setEnabled(false);
 
-        itemNameTextfield.setText("Item name");
-
-        restockQuantityLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
-        restockQuantityLabel.setText("Quantity:");
-
-        restockItemNameLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
-        restockItemNameLabel.setText("Item name:");
-
-        restockQuantityTextfield.setText("Quantity");
+        eksNewPriceButton.setText("jButton1");
+        eksNewPriceButton.setVisible(false);
+        eksNewPriceButton.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(collectEarningsButtons)
-                                                .addGap(85, 85, 85)
-                                                .addComponent(totalSalesButton))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(119, 119, 119)
-                                                .addComponent(replenishChangeButton)))
-                                .addContainerGap(124, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(restockItemNameLabel)
+                                                        .addComponent(restockQuantityLabel))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(itemNameTextfield)
+                                                        .addComponent(restockQuantityTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(35, 35, 35)
+                                                .addComponent(restockButton)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(setnewpriceButton)
+                                                .addGap(82, 82, 82))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(returnButton)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(restockItemNameLabel)
-                                                                        .addComponent(restockQuantityLabel))
-                                                                .addGap(18, 18, 18)
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                        .addComponent(itemNameTextfield)
-                                                                        .addComponent(restockQuantityTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(35, 35, 35)
-                                                                .addComponent(restockButton)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                         .addComponent(itemnameNewPriceLabel)
                                                                         .addComponent(newPriceLabel))
                                                                 .addGap(18, 18, 18)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                         .addComponent(newpricenameTextfield)
-                                                                        .addComponent(newpriceTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGap(35, 35, 35))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                .addComponent(setnewpriceButton)
-                                                                .addGap(82, 82, 82))))
+                                                                        .addComponent(newpriceTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(35, 35, 35))))
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(replenishChangeButton)
+                                .addGap(227, 227, 227))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(35, 35, 35)
-                                                .addComponent(titlePanel)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                                .addComponent(collectEarningsButtons)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(totalSalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)))
+                                .addContainerGap(71, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(restockcheckButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(eksrestockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(checknewPriceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(eksNewPriceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(118, 118, 118))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,13 +203,119 @@ public class maintenanceRVMview extends JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(newPriceLabel)
                                                         .addComponent(newpriceTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(50, 50, 50)
+                                .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(checknewPriceButton)
+                                        .addComponent(eksNewPriceButton)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(restockcheckButton)
+                                                .addComponent(eksrestockButton)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(totalSalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(collectEarningsButtons, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
-                                .addComponent(replenishChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))
+                                        .addComponent(collectEarningsButtons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(replenishChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(52, 52, 52))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(returnButton)
+                                                .addGap(36, 36, 36))))
         );
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+    }
+
+    public JTextField getItemNameTextfield() {
+        return itemNameTextfield;
+    }
+
+    public JTextField getRestockQuantityTextfield() {
+        return restockQuantityTextfield;
+    }
+
+    public JButton getRestockcheckButton() {
+        return restockcheckButton;
+    }
+
+    public JButton getEksrestockButton() {
+        return eksrestockButton;
+    }
+
+    public JTextField getNewpriceTextfield() {
+        return newpriceTextfield;
+    }
+
+    public JTextField getNewpricenameTextfield() {
+        return newpricenameTextfield;
+    }
+
+    public JButton getChecknewPriceButton() {
+        return checknewPriceButton;
+    }
+
+    public JButton getEksNewPriceButton() {
+        return eksNewPriceButton;
+    }
+
+    public JLabel getRestockQuantityLabel() {
+        return restockQuantityLabel;
+    }
+
+    public JLabel getRestockItemNameLabel() {
+        return restockItemNameLabel;
+    }
+
+    public JLabel getItemnameNewPriceLabel() {
+        return itemnameNewPriceLabel;
+    }
+    public JLabel getNewPriceLabel() {
+        return newPriceLabel;
+    }
+
+    public void setrestockButtonListener(ActionListener actionListener) {
+        this.restockButton.addActionListener(actionListener);
+    }
+
+    public void setsetnewpriceButtonListener(ActionListener actionListener) {
+        this.setnewpriceButton.addActionListener(actionListener);
+    }
+
+    public void setrestockcheckButtonListener(ActionListener actionListener) {
+        this.restockcheckButton.addActionListener(actionListener);
+    }
+
+    public void seteksrestockButtonListener(ActionListener actionListener) {
+        this.eksrestockButton.addActionListener(actionListener);
+    }
+
+    public void setchecknewPriceButtonListener(ActionListener actionListener) {
+        this.checknewPriceButton.addActionListener(actionListener);
+    }
+
+    public void setceksNewPriceButtonListener(ActionListener actionListener) {
+        this.eksNewPriceButton.addActionListener(actionListener);
+    }
+
+
+
+    public void setcollectEarningsButtonsListener(ActionListener actionListener) {
+        this.collectEarningsButtons.addActionListener(actionListener);
+    }
+
+    public void setreplenishChangeButtonListener(ActionListener actionListener) {
+        this.replenishChangeButton.addActionListener(actionListener);
+    }
+
+    public void setreturnButtonListener(ActionListener actionListener) {
+        this.returnButton.addActionListener(actionListener);
+    }
+
+
+
+    public void settotalSalesButtonListener(ActionListener actionListener) {
+        this.totalSalesButton.addActionListener(actionListener);
     }
 }

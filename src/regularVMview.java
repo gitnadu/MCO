@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,13 +27,14 @@ public class regularVMview extends javax.swing.JFrame{
         slotPanel = new javax.swing.JPanel();
         balanceLabel = new javax.swing.JLabel();
         itemTrayTextfield = new javax.swing.JTextField();
-        changeTextfield = new javax.swing.JTextField();
+        changeTextArea = new javax.swing.JTextArea();
         putmoneyButton = new javax.swing.JButton();
         balanceTextfield = new javax.swing.JTextField();
         returnButton = new javax.swing.JButton();
         buttonsPanel = new javax.swing.JPanel();
         additemButton = new javax.swing.JButton();
         statusRVMTextfield = new javax.swing.JTextField();
+        changeScrollPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(5, 48, 86));
@@ -197,9 +199,9 @@ public class regularVMview extends javax.swing.JFrame{
         itemTrayTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
         itemTrayTextfield.setHorizontalAlignment(JTextField.CENTER);
 
-        changeTextfield.setEditable(false);
-        changeTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
-        changeTextfield.setHorizontalAlignment(JTextField.CENTER);
+        changeTextArea.setEditable(false);
+        changeTextArea.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 11));
+        changeScrollPane.setViewportView(changeTextArea);
 
         putmoneyButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         putmoneyButton.setText("Put Money");
@@ -246,7 +248,9 @@ public class regularVMview extends javax.swing.JFrame{
             newButtonsPanel.add(slotPanelButtons[i]);
         }
 
-        statusRVMTextfield.setText("statustextfield");
+        statusRVMTextfield.setEditable(false);
+        changeTextArea.setColumns(20);
+        changeTextArea.setRows(5);
 
         additemButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         additemButton.setText("Add item");
@@ -264,13 +268,11 @@ public class regularVMview extends javax.swing.JFrame{
                                                 .addGap(22, 22, 22)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(slotPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE))
-                                                        .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(itemTrayTextfield)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(changeTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(10, 10, 10)))))
+                                                                .addGap(11, 11, 11)
+                                                                .addComponent(changeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(slotPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(24, 24, 24)
@@ -313,16 +315,17 @@ public class regularVMview extends javax.swing.JFrame{
                                                 .addComponent(slotPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(itemTrayTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(statusRVMTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(returnButton)
-                                                        .addComponent(additemButton))
-                                                .addGap(65, 65, 65))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(itemTrayTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(changeTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(changeScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(statusRVMTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                        .addComponent(returnButton)
+                                                                        .addComponent(additemButton))))
+                                                .addGap(65, 65, 65))))
         );
         pack();
         setVisible(false);
@@ -352,6 +355,10 @@ public class regularVMview extends javax.swing.JFrame{
 
     public JTextField getPriceTextfield() {
         return priceTextfield;
+    }
+
+    public JTextArea getChangeTextArea() {
+        return changeTextArea;
     }
 
     public JTextField getCaloriesTextfield() {
@@ -402,6 +409,13 @@ public class regularVMview extends javax.swing.JFrame{
         this.cancelButton.addActionListener(actionListener);
     }
 
+    public void setitemTrayTextfieldListener(MouseListener MouseListener) {
+        this.itemTrayTextfield.addMouseListener(MouseListener);
+    }
+
+    public void setchangeTextAreaListener(MouseListener MouseListener) {
+        this.changeTextArea.addMouseListener(MouseListener);
+    }
 
 
     // setVisible(true);
@@ -413,7 +427,7 @@ public class regularVMview extends javax.swing.JFrame{
     private javax.swing.JLabel caloriesLabel;
     private javax.swing.JTextField caloriesTextfield;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JTextField changeTextfield;
+    private javax.swing.JTextArea changeTextArea;
     private javax.swing.JTextField itemTrayTextfield;
     private javax.swing.JPanel lcdPanel;
     private javax.swing.JLabel nameLabel;
@@ -434,6 +448,7 @@ public class regularVMview extends javax.swing.JFrame{
     private ArrayList<JPanel> trueSlots;
 
     private JButton[] slotPanelButtons;
+    private javax.swing.JScrollPane changeScrollPane;
 
 
 

@@ -14,6 +14,7 @@ public class Item {
     private float calories;
     private float price;
     private String name;
+    private int totalSold;
     private int slotNumber;
 
     /**
@@ -44,6 +45,21 @@ public class Item {
         this.name = item.getName();
     }
 
+    public int getTotalSold() {
+        return totalSold;
+    }
+
+    public int getSlotNumber() {
+        return slotNumber;
+    }
+
+    public void setTotalSold(int totalSold) {
+        this.totalSold = totalSold;
+    }
+
+    public void setSlotNumber(int slotNumber) {
+        this.slotNumber = slotNumber;
+    }
 
     /**
      *
@@ -56,9 +72,8 @@ public class Item {
         return calories;
     }
 
-    public int getSlotNumber() {
-        return slotNumber;
-    }
+
+
 
     /**
      *
