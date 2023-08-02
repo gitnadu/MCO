@@ -73,6 +73,7 @@ public class regularVMview extends javax.swing.JFrame{
         caloriesTextfield.setEditable(false);
 
         priceTextfield.setEditable(false);
+        balanceTextfield.setText(" ");
 
 
         purchaseButton.setText("✅");

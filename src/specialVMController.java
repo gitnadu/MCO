@@ -2,12 +2,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class specialVMController {
 
     specialVMView SVMview;
     SpecialVendingMachine SVMmodel;
     specialvmOptionsView specialoptionsView;
+
+    Item baseItemtobepicked;
+
+
 
 
     specialVMController(specialVMView specialvmview, SpecialVendingMachine specialvendingmachine, specialvmOptionsView specialvmoptionsview, String VMtitle)
@@ -16,8 +21,11 @@ public class specialVMController {
         SVMview = specialvmview;
         SVMmodel = specialvendingmachine;
         specialoptionsView = specialvmoptionsview;
-
+        baseItemtobepicked = new Item("",0,0);
         SVMview.setTitle(VMtitle);
+        SVMview.getTitleLabel1().setText(VMtitle);
+
+        SVMview.getBalanceTextfield().setText("            ");
 
 
         this.SVMview.setadditemButtonListener(new ActionListener()
@@ -36,12 +44,68 @@ public class specialVMController {
                     (SVMview.getBaseButtons())[i].setEnabled(true);
                     (SVMview.getBaseTextAreas())[i].setBackground(new java.awt.Color(194,231,249));
                 }
-                for (int i=0;i<12;i++)
-                {
-                    (SVMview.getItemButtons())[i].setEnabled(true);
-                    (SVMview.getItemTextAreas())[i].setBackground(new java.awt.Color(194,231,249));
-                }
+
             }
+        });
+
+        this.SVMview.setitemTrayTextAreaListener(new MouseListener()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                SVMview.getItemTrayTextArea().setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+
+        this.SVMview.setchangeTextAreaListener(new MouseListener()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                SVMview.getItemTrayTextArea().setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
         });
 
         //
@@ -54,9 +118,39 @@ public class specialVMController {
             }
         });
 
+        this.SVMview.setrefreshButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e) {
+
+                refreshslots();
+                refreshitemslots();
+                refreshbaseslots();
+                refreshCustomizingLCD();
+            }
+        });
+
+        this.SVMview.setreturnButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e) {
+                SVMmodel.setStoredCash(0);
+                SVMview.getChangeTextArea().setText("");
+                SVMview.setVisible(false);
+                SVMview.getBalanceTextfield().setText(""+0);
+                specialvmoptionsview.setVisible(true);
+
+            }
+        });
+
+
+
+
         this.SVMview.setpurchaseButtonListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
+
+                SVMmodel.getCustomizedItem().add(baseItemtobepicked);
+
+
                 if (!((SVMview.getBaseButtons())[0].isEnabled()))
                 {
                     if (!((SVMmodel.getStoredCash() - SVMmodel.getSelectedItem().getPrice() ) >= 0))
@@ -78,15 +172,18 @@ public class specialVMController {
                             SVMview.getStatusSVMTextfield().setText("Error");
                         }
                     }
+
+                    refreshslots();
                 }
+                else
                 {
                     if (!((SVMmodel.getStoredCash() - SVMmodel.getPriceCustomizedItem()) >= 0))
                     {
-                        SVMview.getStatusSVMTextfield().setText("Insufficient Funds!");
+                        SVMview.getStatusSVMTextfield().setText("I2222");
                     }
-                    else
+                    else if (!(baseItemtobepicked.getName().compareTo("")==0))
                     {
-                        if (SVMmodel.doSpecialTransaction())
+                        if (SVMmodel.doSpecialTransaction() )
                         {
                             SVMview.getStatusSVMTextfield().setText("Purchase Success");
                             SVMview.getItemTrayTextArea().setText(SVMmodel.getCustomizedItem().get(0).getName() + "\n");
@@ -94,14 +191,18 @@ public class specialVMController {
                             {
                                 SVMview.getItemTrayTextArea().append("" + SVMmodel.getCustomizedItem().get(0).getName() + "\n");
                             }
-                            SVMmodel.purchaseCustomizedItem();
+                            SVMmodel.getCustomizedItem().clear();
                             SVMview.getBalanceTextfield().setText("" +SVMmodel.getStoredCash());
                         }
                         else
                         {
-                            SVMview.getStatusSVMTextfield().setText("Error");
+                            SVMview.getStatusSVMTextfield().setText("Purchase unsuccesful");
                         }
                     }
+
+                    refreshbaseslots();
+                    refreshslots();
+                    refreshitemslots();
                 }
 
 
@@ -136,22 +237,31 @@ public class specialVMController {
                 {
                     if (e.getSource() == (SVMview.getBaseButtons())[i])
                     {
-                        counter = i+1;
-                        for (int j=0; j<12;j++)
-                        {
-                            if ( (SVMmodel.getExclusiveItemRecord())[j] instanceof BaseItem)
-                            {
-                                counter--;
+                        SVMview.getPurchaseButton().setEnabled(true);
+                        SVMview.getCancelButton().setEnabled(true);
+                        int index = SVMmodel.getBaseItemIndex().get(i);
+                        SVMview.getStatusSVMTextfield().setText("Base item: " + index);
 
-                                if (counter == 0)
-                                {
-                                    SVMview.getNameTextfield().setText(""+ (SVMmodel.getExclusiveItemRecord())[j].getName());
-                                    SVMview.getPriceTextfield().setText(""+ (SVMmodel.getExclusiveItemRecord())[j].getPrice());
-                                    SVMview.getCaloriesTextfield().setText(""+ (SVMmodel.getExclusiveItemRecord())[j].getCalories());
-                                    SVMmodel.getCustomizedItem().add((SVMmodel.getExclusiveItemRecord())[j]);
-                                }
-                            }
+                        SVMview.getNameTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getName());
+                        SVMview.getPriceTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getPrice());
+                        SVMview.getCaloriesTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getCalories());
+
+
+                        if (SVMmodel.isExclusiveItemAvailable((SVMmodel.getExclusiveItemRecord())[index]))
+                        {
+                            baseItemtobepicked = (SVMmodel.getExclusiveItemRecord())[index];'
                         }
+                        else
+                        {
+                            SVMview.getStatusSVMTextfield().setText("Unavailable");
+                        }
+
+                        for (int j=0;j<12;j++)
+                        {
+                            (SVMview.getItemButtons())[j].setEnabled(true);
+                            (SVMview.getItemTextAreas())[j].setBackground(new java.awt.Color(194,231,249));
+                        }
+
                     }
                 }
             }
@@ -166,22 +276,15 @@ public class specialVMController {
                 {
                     if (e.getSource() == (SVMview.getItemButtons())[i])
                     {
-                        counter = i+1;
-                        for (int j=0; j<12;j++)
-                        {
-                            if ( (SVMmodel.getExclusiveItemRecord())[j] instanceof DependentItem)
-                            {
-                                counter--;
+                        SVMview.getPurchaseButton().setEnabled(true);
+                        SVMview.getCancelButton().setEnabled(true);
+                        int index = SVMmodel.getOtherItemIndex().get(i);
+                        SVMview.getStatusSVMTextfield().setText("Other item: " + index);
 
-                                if (counter == 0)
-                                {
-                                    SVMview.getNameTextfield().setText(""+ (SVMmodel.getExclusiveItemRecord())[j].getName());
-                                    SVMview.getPriceTextfield().setText(""+ (SVMmodel.getExclusiveItemRecord())[j].getPrice());
-                                    SVMview.getCaloriesTextfield().setText(""+ (SVMmodel.getExclusiveItemRecord())[j].getCalories());
-                                    SVMmodel.getCustomizedItem().add((SVMmodel.getExclusiveItemRecord())[j]);
-                                }
-                            }
-                        }
+                        SVMview.getNameTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getName());
+                        SVMview.getPriceTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getPrice());
+                        SVMview.getCaloriesTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getCalories());
+                        SVMmodel.getCustomizedItem().add((SVMmodel.getExclusiveItemRecord())[index]);
                     }
                 }
             }
@@ -191,65 +294,20 @@ public class specialVMController {
         {
             public void actionPerformed(ActionEvent e) {
 
-                for (int i = 9; i < 9; i++) {
+                for (int i = 0; i < 9; i++) {
                     if (e.getSource() == (SVMview.getSlotButtons())[i])
                     {
-
-
                             SVMview.getNameTextfield().setText("" + SVMmodel.getSlot(i).getPrimaryItem().getName());
                             SVMview.getPriceTextfield().setText("" + SVMmodel.getSlot(i).getPrimaryItem().getPrice());
                             SVMview.getCaloriesTextfield().setText("" + SVMmodel.getSlot(i).getPrimaryItem().getCalories());
-
+                            SVMview.getStatusSVMTextfield().setText("Selecting "+ SVMmodel.getSlot(i).getPrimaryItem().getName());
                             SVMmodel.setSelectedItem(SVMmodel.getSlot(i).getPrimaryItem());
-
-
-
-                            SVMview.getStatusSVMTextfield().setText("mali yan");
-                            SVMview.getNameTextfield().setText(""+ SVMmodel.getSlot(i).getPrimaryItem().getName());
-                            SVMview.getPriceTextfield().setText(""+ SVMmodel.getSlot(i).getPrimaryItem().getPrice());
-                            SVMview.getCaloriesTextfield().setText(""+ SVMmodel.getSlot(i).getPrimaryItem().getCalories());
-                            SVMmodel.getCustomizedItem().add(SVMmodel.getSlot(i).getPrimaryItem());
-
+                            SVMview.getPurchaseButton().setEnabled(true);
+                            SVMview.getCancelButton().setEnabled(true);
                     }
                 }
             }
         });
-
-        //
-
-        this.SVMview.setstatusSVMTextFieldListener(new MouseListener()
-        {
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                refreshbaseslots();
-                refreshslots();
-                refreshitemslots();
-                refreshCustomizingLCD();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
-
 
 
     }
@@ -288,16 +346,16 @@ public class specialVMController {
     public void refreshCustomizingLCD()
     {
         SVMview.getCustomizeTextArea().setText("Customizing Items: \n");
+
         if (SVMmodel.getCURRENTnumberOfExclusiveItems() > 0)
         {
-            for (int i = 0; i < SVMmodel.getCURRENTnumberOfExclusiveItems(); i++)
+            for (int i = 0; i < SVMmodel.getCustomizedItem().size() ; i++)
             {
                 SVMview.getCustomizeTextArea().append("Item: " + SVMmodel.getCustomizedItem().get(i).getName() + "\n");
             }
         }
-
         SVMview.getCustomizeTextArea().append("Total Calories: " + SVMmodel.getCaloriesCustomizedItem());
-        SVMview.getCustomizeTextArea().append("Total Price: " + SVMmodel.getPriceCustomizedItem());
+        SVMview.getCustomizeTextArea().append("\nTotal Price: " + SVMmodel.getPriceCustomizedItem());
     }
 
 

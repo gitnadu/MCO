@@ -36,14 +36,17 @@ public class specialVMView extends javax.swing.JFrame{
         baseItemPanel = new javax.swing.JPanel();
         OtherItemPanel = new javax.swing.JPanel();
         resetButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         statusSVMTextField.setEditable(false);
+        statusSVMTextField.setHorizontalAlignment(JTextField.CENTER);
 
         balanceTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
-        balanceTextfield.setAutoscrolls(false);
         balanceTextfield.setEditable(false);
+        balanceTextfield.setFocusable(false);
+        balanceTextfield.setAutoscrolls(true);
+        balanceTextfield.setPreferredSize(new Dimension(75, 15));
 
         returnButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         returnButton.setText("Return");
@@ -76,13 +79,21 @@ public class specialVMView extends javax.swing.JFrame{
 
         nameTextfield.setEditable(false);
 
+
         caloriesTextfield.setEditable(false);
 
         priceTextfield.setEditable(false);
 
         purchaseButton.setText("✅");
+        purchaseButton.setEnabled(false);
 
         cancelButton.setText("❌");
+        cancelButton.setEnabled(false);
+
+        resetButton.setText("↻");
+
+        refreshButton.setText("⟳");
+
 
         nameLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(242, 242, 242));
@@ -199,6 +210,8 @@ public class specialVMView extends javax.swing.JFrame{
         slotPanel.add(newslotPanel);
 
 
+
+
         javax.swing.GroupLayout slotPanelLayout = new javax.swing.GroupLayout(slotPanel);
         slotPanel.setLayout(slotPanelLayout);
         slotPanelLayout.setHorizontalGroup(
@@ -229,17 +242,18 @@ public class specialVMView extends javax.swing.JFrame{
         customizeTextArea.setRows(5);
         customizeTextArea.setEditable(false);
         customizeScrollPane.setViewportView(customizeTextArea);
+        customizeScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+        customizeScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
+
 
         customizeButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         customizeButton.setText("Customize");
 
         itemTrayTextArea.setColumns(20);
         itemTrayTextArea.setRows(5);
-        itemTrayTextArea.setEditable(false);
         itemTrayScrollPane.setViewportView(itemTrayTextArea);
         itemTrayScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
         itemTrayScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
-
 
         newBasePanel = new JPanel();
         basePanels = new JPanel[3];
@@ -288,7 +302,6 @@ public class specialVMView extends javax.swing.JFrame{
 
         baseItemPanel.add(newBasePanel);
 
-
         javax.swing.GroupLayout baseItemPanelLayout = new javax.swing.GroupLayout(baseItemPanel);
         baseItemPanel.setLayout(baseItemPanelLayout);
         baseItemPanelLayout.setHorizontalGroup(
@@ -300,13 +313,14 @@ public class specialVMView extends javax.swing.JFrame{
                         .addGap(0, 112, Short.MAX_VALUE)
         );
 
-
         OtherItemPanel.setBackground(new java.awt.Color(0, 0, 0));
 
         newItemPanel = new JPanel();
         itemPanels = new JPanel[12];
         itemTextAreas = new JTextArea[12];
         itemButtons = new JButton[12];
+
+        itemTrayTextArea.setEditable(false);
 
         newItemPanel.setSize(new Dimension(393,432));
         newItemPanel.setLayout(new GridLayout(4,3,6,6));
@@ -350,11 +364,15 @@ public class specialVMView extends javax.swing.JFrame{
 
         OtherItemPanel.add(newItemPanel);
 
+
+
+
+
         javax.swing.GroupLayout OtherItemPanelLayout = new javax.swing.GroupLayout(OtherItemPanel);
         OtherItemPanel.setLayout(OtherItemPanelLayout);
         OtherItemPanelLayout.setHorizontalGroup(
                 OtherItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 393, Short.MAX_VALUE)
+                        .addGap(0, 395, Short.MAX_VALUE)
         );
         OtherItemPanelLayout.setVerticalGroup(
                 OtherItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,6 +380,8 @@ public class specialVMView extends javax.swing.JFrame{
         );
 
         resetButton.setText("🔄");
+
+        refreshButton.setText("refreshButton");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -379,9 +399,9 @@ public class specialVMView extends javax.swing.JFrame{
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                         .addComponent(changeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addComponent(slotPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(statusSVMTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -401,16 +421,18 @@ public class specialVMView extends javax.swing.JFrame{
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(balanceTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(additemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(returnButton)))
+                                                .addGap(12, 12, 12)
+                                                .addComponent(additemButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(returnButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(OtherItemPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(baseItemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(resetButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 21, Short.MAX_VALUE))
+                                .addGap(0, 14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,7 +471,8 @@ public class specialVMView extends javax.swing.JFrame{
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(additemButton)
                                                         .addComponent(returnButton)
-                                                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(refreshButton))))
                                 .addGap(61, 61, 61))
         );
 
@@ -479,12 +502,20 @@ public class specialVMView extends javax.swing.JFrame{
         return slotTextAreas;
     }
 
+
     public JTextField getBalanceTextfield() {
         return balanceTextfield;
     }
 
     public JTextField getStatusSVMTextfield() {
         return statusSVMTextField;
+    }
+    public JLabel getTitleLabel1() {
+        return titleLabel1;
+    }
+
+    public JTextArea getChangeTextArea() {
+        return changeTextArea;
     }
 
     public JButton[] getSlotButtons() {
@@ -507,7 +538,7 @@ public class specialVMView extends javax.swing.JFrame{
         this.resetButton.addActionListener(actionListener);
     }
 
-    public void setstatusSVMTextFieldListener(MouseListener MouseListener) {
+    public void setstatusSVMTextfieldListener(MouseListener MouseListener) {
         this.statusSVMTextField.addMouseListener(MouseListener);
     }
 
@@ -521,10 +552,37 @@ public class specialVMView extends javax.swing.JFrame{
         }
     }
 
+    public void setreturnButtonListener(ActionListener actionListener) {
+        this.returnButton.addActionListener(actionListener);
+    }
+
+    public void setitemTrayTextAreaListener(MouseListener MouseListener) {
+        this.itemTrayTextArea.addMouseListener(MouseListener);
+    }
+
+    public void setchangeTextAreaListener(MouseListener MouseListener) {
+        this.changeTextArea.addMouseListener(MouseListener);
+    }
+
     public void setbaseButtonsListener(ActionListener actionListener) {
         for(int i=0;i<3;i++)
         {
             this.baseButtons[i].addActionListener(actionListener);
+        }
+    }
+
+    public JButton getPurchaseButton() {
+        return purchaseButton;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
+    }
+
+    public void setrefreshButtonListener(ActionListener actionListener) {
+        for(int i=0;i<3;i++)
+        {
+            this.refreshButton.addActionListener(actionListener);
         }
     }
 
@@ -585,6 +643,7 @@ public class specialVMView extends javax.swing.JFrame{
     private javax.swing.JTextField statusSVMTextField;
     private javax.swing.JLabel titleLabel1;
     private javax.swing.JPanel titlePanel1;
+    private javax.swing.JButton refreshButton;
 
     private JPanel newslotPanel;
     private JPanel[] slotPanels;
@@ -600,4 +659,5 @@ public class specialVMView extends javax.swing.JFrame{
     private JPanel[] itemPanels;
     private JTextArea[] itemTextAreas;
     private JButton[] itemButtons;
+    
 }

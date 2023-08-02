@@ -3,14 +3,18 @@ import java.util.ArrayList;
 
 public class SpecialVendingMachine extends RegularVendingMachine{
 
+    private ArrayList<Integer> baseItemIndex = new ArrayList<>();
+    private ArrayList<Integer> otherItemIndex = new ArrayList<>();
+
     private ArrayList<Item>[] exclusiveItems = new ArrayList[12];
     private Item[] exclusiveItemRecord =  new Item[12];
     private ExclusiveSlot[] exclusiveSlot = new ExclusiveSlot[12];
+
     private int CURRENTnumberOfExclusiveItems;
     private int CURRENTnumberOfExclusiveSlots;
-    private int CURRENTnumberOfItemstobeCustomized;
     // the items that are only available for the special vending machine
     private ArrayList<Item> customizedItem;
+    SpecialTransaction specialCurrentTransaction;
     // arraylist of items that will be customized
 
 
@@ -27,15 +31,17 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         customizedItem = new ArrayList<>();
         CURRENTnumberOfExclusiveItems = 0; // no exclusive items in the machine
         CURRENTnumberOfExclusiveSlots = 0;
-        CURRENTnumberOfItemstobeCustomized = 0;
     }
 
-    public void customizeItem()
-    {
-        // if an item is pushed from the given items
+    public ArrayList<Integer> getBaseItemIndex() {
+        return baseItemIndex;
     }
 
-    public boolean addBaseItem(String itemName ,float itemPrice, float itemCalories,  int itemQuantity)
+    public ArrayList<Integer> getOtherItemIndex() {
+        return otherItemIndex;
+    }
+
+    public boolean addBaseItem(String itemName , float itemPrice, float itemCalories, int itemQuantity)
     {
         if (itemPrice < 0)
         {
@@ -62,6 +68,8 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
         exclusiveItemRecord[CURRENTnumberOfExclusiveItems] = tempItem;
         exclusiveItemRecord[CURRENTnumberOfExclusiveItems].setSlotNumber(CURRENTnumberOfExclusiveItems);
+
+        baseItemIndex.add(CURRENTnumberOfExclusiveItems);
 
         exclusiveSlot[CURRENTnumberOfExclusiveSlots].setPrimaryItem(tempItem);
 
@@ -101,6 +109,8 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         exclusiveItemRecord[CURRENTnumberOfExclusiveItems].setSlotNumber(CURRENTnumberOfExclusiveItems);
         exclusiveSlot[CURRENTnumberOfExclusiveSlots].setPrimaryItem(tempItem);
 
+        otherItemIndex.add(CURRENTnumberOfExclusiveItems);
+
         CURRENTnumberOfExclusiveItems += 1;
         CURRENTnumberOfExclusiveSlots += 1;
 
@@ -115,7 +125,6 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         if (isExclusiveItemAvailable(item))
         {
             customizedItem.add(item);
-            CURRENTnumberOfItemstobeCustomized++;
             return true;
         }
         return false;
@@ -152,16 +161,14 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
         for (int i=0;i<12;i++)
         {
-            if (customizedItem.get(CURRENTnumberOfItemstobeCustomized-1).equals(exclusiveItemRecord[i]))
+            if (customizedItem.get(customizedItem.size()-1).equals(exclusiveItemRecord[i]))
             {
                 exclusiveItems[i].remove(exclusiveItems[i].size()-1); // removes one from the arraylist
-                if (CURRENTnumberOfItemstobeCustomized != 0)
-                {
-                    CURRENTnumberOfItemstobeCustomized--;
-                }
+                exclusiveItemRecord[i].setTotalSold(exclusiveItemRecord[i].getTotalSold()+1);
+                System.out.print("Minus    ");
             }
         }
-        customizedItem.clear(); // this clears the customized items
+
     }
 
     public boolean doSpecialTransaction() {
@@ -172,43 +179,44 @@ public class SpecialVendingMachine extends RegularVendingMachine{
             return false;
         }
         // if there are no new transaction
-        SpecialTransaction currentTransaction = new SpecialTransaction(this.storedCash); // creates the transaction
+        specialCurrentTransaction = new SpecialTransaction(this.storedCash); // creates the transaction
 
-        currentTransaction.setSelectedItems(customizedItem);
+        specialCurrentTransaction.setSelectedItems(customizedItem);
 
         // if the customer picks 0
         if (customizedItem.size() == 0)
         {
-            this.currentTransaction.setBalance(this.storedCash);
-            this.currentTransaction.setTotalAmount(0);
+            this.specialCurrentTransaction.setBalance(this.storedCash);
+            this.specialCurrentTransaction.setTotalAmount(0);
 
             ArrayList<Item> tempList = new ArrayList<>();
             Item temp = new Item("BLANK",0,0);
             tempList.add(temp);
-            currentTransaction.setSelectedItems(tempList);
+            specialCurrentTransaction.setSelectedItems(tempList);
 
-            transactions.add(currentTransaction);
+            transactions.add(specialCurrentTransaction);
         }
-        else if ( (currentTransaction.setSelectedItems(customizedItem) && this.isChangeEnough(this.storedCash) )  )
+        else if ( (specialCurrentTransaction.setSelectedItems(customizedItem)))
         {
             // sets the total amount for records
-            currentTransaction.setTotalAmount(this.getPriceCustomizedItem());
+            specialCurrentTransaction.setTotalAmount(this.getPriceCustomizedItem());
 
             // deducts the money purchase to inserted money
-            currentTransaction.deductPurchase(currentTransaction.getTotalAmount());
+            specialCurrentTransaction.deductPurchase(specialCurrentTransaction.getTotalAmount());
 
             // adds to the vending machines total earnings
-            this.totalEarnings += currentTransaction.getTotalAmount();
+            this.totalEarnings += specialCurrentTransaction.getTotalAmount();
 
             // records the current Transaction
-            transactions.add(currentTransaction);
+            transactions.add(specialCurrentTransaction);
 
-            this.storedCash = this.storedCash - currentTransaction.getTotalAmount();
+            this.storedCash = this.storedCash - specialCurrentTransaction.getTotalAmount();
 
-            this.currentTransaction.setBalance(this.storedCash);
+            this.specialCurrentTransaction.setBalance(this.storedCash);
+
+            purchaseCustomizedItem();
 
             System.out.println("\nPrinting receipt...\n\n");
-            this.currentTransaction.printReceipt();
 
             return true;
         }
@@ -224,7 +232,7 @@ public class SpecialVendingMachine extends RegularVendingMachine{
     {
         for (int i=0;i<12;i++)
         {
-            if (item.equals(exclusiveItems[i]))
+            if (item.getName().compareTo(exclusiveItemRecord[i].getName())==0)
             {
                 if (exclusiveItems[i].size() > 0)
                 {

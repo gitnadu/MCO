@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SpecialVendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpecialVendingMachine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/additemSpecialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/additemSpecialController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/insertMoneySpecialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/insertMoneySpecialController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/regularVMview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularVMview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/specialVMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/specialVMController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/specialVMView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/specialVMView.java" afterDir="false" />
     </list>
@@ -39,15 +41,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/ASUS/Documents/1st year/TERM 3/CCPROG3/MCO"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/1st year/TERM 3/CCPROG3/MCO&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,16 +71,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/additemSpecialController.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

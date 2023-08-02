@@ -69,9 +69,8 @@ public class additemSpecialController {
         this.additemspecialview.setcancelButtonListener(new ActionListener()
         {
             @Override
-            public void actionPerformed(ActionEvent e){
-                SVMview.setVisible(true);
-                SVMview.setEnabled(true);
+            public void actionPerformed(ActionEvent e)
+            {
                 additemspecialview.setVisible(false);
                 additemspecialview.getNameTextfield().setText("");
                 additemspecialview.getPriceTextfield().setText("");

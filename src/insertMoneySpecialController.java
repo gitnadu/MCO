@@ -22,6 +22,7 @@ public class insertMoneySpecialController {
             public void actionPerformed(ActionEvent e) {
                 SVMmodel.addStoredCash(temp.getTotalValue());
                 SVMview.getBalanceTextfield().setText("" + SVMmodel.getStoredCash());
+                SVMview.getStatusSVMTextfield().setText("Added money");
                 moneymachine.dispose();
             }
         });
