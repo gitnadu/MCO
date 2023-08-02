@@ -48,6 +48,7 @@ public class RegularVendingMachine {
         for(int i=0;i<9;i++)
         {
             item[i] = new ArrayList<Item>();
+            itemRecord[i] = new Item("",0,0);
         }
 
 
@@ -141,7 +142,7 @@ public class RegularVendingMachine {
 
 
         Item tempItem = new Item(itemName,itemPrice,itemCalories);
-        itemRecord[CURRENTnumberOfItems] = new Item(tempItem);
+        itemRecord[CURRENTnumberOfItems] = tempItem;
         itemRecord[CURRENTnumberOfItems].setSlotNumber(CURRENTnumberOfItems);
 
         this.addStock(itemQuantity,tempItem,this.CURRENTnumberOfItems);

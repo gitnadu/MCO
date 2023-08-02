@@ -199,6 +199,7 @@ public class specialVMView extends javax.swing.JFrame{
             slotPanels[i].add(slotTextAreas[i],  BorderLayout.NORTH);
             slotPanels[i].add(slotButtons[i], BorderLayout.SOUTH);
             slotButtons[i].setPreferredSize(new Dimension(20,20));
+            slotButtons[i].setEnabled(false);
         }
 
         // adds all the panels in the main panel
@@ -234,9 +235,12 @@ public class specialVMView extends javax.swing.JFrame{
 
         changeTextArea.setColumns(20);
         changeTextArea.setRows(5);
+        changeTextArea.setEditable(false);
+
         changeScrollPane.setViewportView(changeTextArea);
         changeScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
         changeScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
+
 
         customizeTextArea.setColumns(20);
         customizeTextArea.setRows(5);
@@ -363,9 +367,6 @@ public class specialVMView extends javax.swing.JFrame{
         }
 
         OtherItemPanel.add(newItemPanel);
-
-
-
 
 
         javax.swing.GroupLayout OtherItemPanelLayout = new javax.swing.GroupLayout(OtherItemPanel);
@@ -524,6 +525,10 @@ public class specialVMView extends javax.swing.JFrame{
 
     public void setcustomizeButtonListener(ActionListener actionListener) {
         this.customizeButton.addActionListener(actionListener);
+    }
+
+    public void setcancelButtonListener(ActionListener actionListener) {
+        this.cancelButton.addActionListener(actionListener);
     }
 
     public void setadditemButtonListener(ActionListener actionListener) {

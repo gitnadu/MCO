@@ -10,8 +10,6 @@ public class specialVMController {
     SpecialVendingMachine SVMmodel;
     specialvmOptionsView specialoptionsView;
 
-    Item baseItemtobepicked;
-
 
 
 
@@ -21,7 +19,6 @@ public class specialVMController {
         SVMview = specialvmview;
         SVMmodel = specialvendingmachine;
         specialoptionsView = specialvmoptionsview;
-        baseItemtobepicked = new Item("",0,0);
         SVMview.setTitle(VMtitle);
         SVMview.getTitleLabel1().setText(VMtitle);
 
@@ -43,6 +40,10 @@ public class specialVMController {
                 {
                     (SVMview.getBaseButtons())[i].setEnabled(true);
                     (SVMview.getBaseTextAreas())[i].setBackground(new java.awt.Color(194,231,249));
+                }
+                for(int i=0;i<9;i++)
+                {
+                    (SVMview.getSlotButtons())[i].setEnabled(false);
                 }
 
             }
@@ -83,7 +84,7 @@ public class specialVMController {
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                SVMview.getItemTrayTextArea().setText("");
+                SVMview.getChangeTextArea().setText("");
             }
 
             @Override
@@ -137,10 +138,10 @@ public class specialVMController {
                 SVMview.setVisible(false);
                 SVMview.getBalanceTextfield().setText(""+0);
                 specialvmoptionsview.setVisible(true);
+                SVMmodel.getCustomizedItem().clear();
 
             }
         });
-
 
 
 
@@ -148,10 +149,7 @@ public class specialVMController {
         {
             public void actionPerformed(ActionEvent e) {
 
-                SVMmodel.getCustomizedItem().add(baseItemtobepicked);
-
-
-                if (!((SVMview.getBaseButtons())[0].isEnabled()))
+                if (SVMmodel.getCustomizedItem().size() == 0)
                 {
                     if (!((SVMmodel.getStoredCash() - SVMmodel.getSelectedItem().getPrice() ) >= 0))
                     {
@@ -166,6 +164,8 @@ public class specialVMController {
                             SVMview.getItemTrayTextArea().setText("" + SVMmodel.getSelectedItem().getName());
 
                             SVMview.getBalanceTextfield().setText("" +SVMmodel.getStoredCash());
+
+                            SVMmodel.setSelectedItem(null);
                         }
                         else
                         {
@@ -179,24 +179,27 @@ public class specialVMController {
                 {
                     if (!((SVMmodel.getStoredCash() - SVMmodel.getPriceCustomizedItem()) >= 0))
                     {
-                        SVMview.getStatusSVMTextfield().setText("I2222");
+                        SVMview.getStatusSVMTextfield().setText("Insufficient Funds");
                     }
-                    else if (!(baseItemtobepicked.getName().compareTo("")==0))
+                    else
                     {
-                        if (SVMmodel.doSpecialTransaction() )
+                        if (SVMmodel.doSpecialTransaction())
                         {
-                            SVMview.getStatusSVMTextfield().setText("Purchase Success");
-                            SVMview.getItemTrayTextArea().setText(SVMmodel.getCustomizedItem().get(0).getName() + "\n");
-                            for (int i=1;i<SVMmodel.getCURRENTnumberOfExclusiveItems();i++)
-                            {
-                                SVMview.getItemTrayTextArea().append("" + SVMmodel.getCustomizedItem().get(0).getName() + "\n");
-                            }
-                            SVMmodel.getCustomizedItem().clear();
+                            SVMview.getStatusSVMTextfield().setText("Succesfully purchased");
                             SVMview.getBalanceTextfield().setText("" +SVMmodel.getStoredCash());
+                            SVMview.getItemTrayTextArea().setText(SVMmodel.getCustomizedItem().get(0).getName() + "\n");
+                            for (int i=1;i<SVMmodel.getCustomizedItem().size();i++)
+                            {
+                                SVMview.getItemTrayTextArea().append("" + SVMmodel.getCustomizedItem().get(i).getName() + "\n");
+                            }
+                            SVMmodel.purchaseCustomizedItem();
+
+
+
                         }
                         else
                         {
-                            SVMview.getStatusSVMTextfield().setText("Purchase unsuccesful");
+                            SVMview.getStatusSVMTextfield().setText("Purchase unsuccessful");
                         }
                     }
 
@@ -204,13 +207,36 @@ public class specialVMController {
                     refreshslots();
                     refreshitemslots();
                 }
-
-
             }
         });
 
+        this.SVMview.setcancelButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                ArrayList<Integer> changeHolder = new ArrayList<>();
+                changeHolder = SVMmodel.giveChange(SVMmodel.getStoredCash());
+                SVMview.getChangeTextArea().setText(changeHolder.get(0).toString() + "\n");
+                if (changeHolder.size()>0)
+                {
+                    for(int i=1;i<changeHolder.size();i++)
+                    {
+                        SVMview.getChangeTextArea().append(changeHolder.get(i).toString() + "\n");
+                    }
+                }
+                SVMview.getNameTextfield().setText("");
+                SVMview.getPriceTextfield().setText("");
+                SVMview.getCaloriesTextfield().setText("");
 
+                SVMview.getStatusSVMTextfield().setText("Purchase Cancelled");
 
+                SVMview.getPurchaseButton().setEnabled(false);
+                SVMview.getCancelButton().setEnabled(false);
+
+                SVMmodel.setStoredCash(0);
+                SVMview.getBalanceTextfield().setText(""+SVMmodel.getStoredCash());
+            }
+        });
         this.SVMview.setresetButtonListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
@@ -225,6 +251,13 @@ public class specialVMController {
                     (SVMview.getItemButtons())[i].setEnabled(false);
                     (SVMview.getItemTextAreas())[i].setBackground(new java.awt.Color(255,255,255));
                 }
+
+                for (int i=0;i<12;i++)
+                {
+                    (SVMview.getSlotButtons())[i].setEnabled(true);
+                }
+
+
             }
         });
 
@@ -249,7 +282,12 @@ public class specialVMController {
 
                         if (SVMmodel.isExclusiveItemAvailable((SVMmodel.getExclusiveItemRecord())[index]))
                         {
-                            baseItemtobepicked = (SVMmodel.getExclusiveItemRecord())[index];'
+                            SVMmodel.customizingItem(SVMmodel.getExclusiveItemRecord()[index]);
+
+                            for (int j = 0;j<3;j++)
+                            {
+                                (SVMview.getBaseButtons())[j].setEnabled(false);
+                            }
                         }
                         else
                         {
@@ -259,6 +297,7 @@ public class specialVMController {
                         for (int j=0;j<12;j++)
                         {
                             (SVMview.getItemButtons())[j].setEnabled(true);
+                            (SVMview.getSlotButtons())[j].setEnabled(true);
                             (SVMview.getItemTextAreas())[j].setBackground(new java.awt.Color(194,231,249));
                         }
 
@@ -284,7 +323,21 @@ public class specialVMController {
                         SVMview.getNameTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getName());
                         SVMview.getPriceTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getPrice());
                         SVMview.getCaloriesTextfield().setText("" +(SVMmodel.getExclusiveItemRecord())[index].getCalories());
-                        SVMmodel.getCustomizedItem().add((SVMmodel.getExclusiveItemRecord())[index]);
+                        if (SVMmodel.getCustomizedItem().size() < 5)
+                        {
+                            SVMmodel.getCustomizedItem().add((SVMmodel.getExclusiveItemRecord())[index]);
+                            SVMview.getStatusSVMTextfield().setText("Added! ");
+                        }
+                        else
+                        {
+                            SVMview.getStatusSVMTextfield().setText("You can only add up to 4 items");
+                            for(int j=0;j<12;j++)
+                            {
+                                (SVMview.getItemButtons())[j].setEnabled(false);
+                            }
+
+                        }
+
                     }
                 }
             }
@@ -297,13 +350,29 @@ public class specialVMController {
                 for (int i = 0; i < 9; i++) {
                     if (e.getSource() == (SVMview.getSlotButtons())[i])
                     {
+                        if (!(SVMmodel.getCustomizedItem().size()>0))
+                        {
                             SVMview.getNameTextfield().setText("" + SVMmodel.getSlot(i).getPrimaryItem().getName());
                             SVMview.getPriceTextfield().setText("" + SVMmodel.getSlot(i).getPrimaryItem().getPrice());
                             SVMview.getCaloriesTextfield().setText("" + SVMmodel.getSlot(i).getPrimaryItem().getCalories());
                             SVMview.getStatusSVMTextfield().setText("Selecting "+ SVMmodel.getSlot(i).getPrimaryItem().getName());
+
                             SVMmodel.setSelectedItem(SVMmodel.getSlot(i).getPrimaryItem());
                             SVMview.getPurchaseButton().setEnabled(true);
                             SVMview.getCancelButton().setEnabled(true);
+                        }
+                        else
+                        {
+                            if(SVMmodel.checkIfItemAvailable(SVMmodel.getSlot(i).getPrimaryItem()))
+                            {
+                                SVMmodel.getCustomizedItem().add(SVMmodel.getSlot(i).getPrimaryItem());
+                            }
+                            else
+                            {
+                                SVMview.getStatusSVMTextfield().setText("Unavailable");
+                            }
+                        }
+
                     }
                 }
             }

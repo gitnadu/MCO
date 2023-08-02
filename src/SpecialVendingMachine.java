@@ -159,16 +159,26 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
     public void purchaseCustomizedItem() {
 
-        for (int i=0;i<12;i++)
-        {
-            if (customizedItem.get(customizedItem.size()-1).equals(exclusiveItemRecord[i]))
-            {
-                exclusiveItems[i].remove(exclusiveItems[i].size()-1); // removes one from the arraylist
-                exclusiveItemRecord[i].setTotalSold(exclusiveItemRecord[i].getTotalSold()+1);
-                System.out.print("Minus    ");
+        while(customizedItem.size()>0) {
+
+            for (int j = 0; j < 9; j++) {
+                if (customizedItem.get(customizedItem.size() - 1).getName().compareTo(itemRecord[j].getName()) == 0) {
+                    item[j].remove(item[j].size() - 1);
+                    itemRecord[j].setTotalSold(itemRecord[j].getTotalSold() + 1);
+                    customizedItem.remove(customizedItem.size() - 1);
+                }
+            }
+
+            for (int j = 0; j < 12; j++) {
+                if (customizedItem.get(customizedItem.size() - 1).equals(exclusiveItemRecord[j])) {
+                    exclusiveItems[j].remove(exclusiveItems[j].size() - 1); // removes one from the arraylist
+                    exclusiveItemRecord[j].setTotalSold(exclusiveItemRecord[j].getTotalSold() + 1);
+                    customizedItem.remove(customizedItem.size() - 1);
+                }
+
+
             }
         }
-
     }
 
     public boolean doSpecialTransaction() {
@@ -214,7 +224,7 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
             this.specialCurrentTransaction.setBalance(this.storedCash);
 
-            purchaseCustomizedItem();
+
 
             System.out.println("\nPrinting receipt...\n\n");
 
@@ -255,6 +265,10 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
     public Item[] getExclusiveItemRecord() {
         return exclusiveItemRecord;
+    }
+
+    public int getCURRENTnumberOfExclusiveSlots() {
+        return CURRENTnumberOfExclusiveSlots;
     }
 
     public ExclusiveSlot[] getExclusiveSlot() {

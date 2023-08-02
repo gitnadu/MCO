@@ -53,6 +53,7 @@ public class additemSpecialController {
                         {
                             SVMview.getStatusSVMTextfield().setText("slot");
                             specialvendingmachine.addItem(itemName,itemPrice,itemCalories,itemQuantity);
+                            (SVMview.getSlotButtons())[specialvendingmachine.getCURRENTnumberOfItems()-1].setEnabled(true);
                         }
                         else if (additemspecialview.getOtherItemRButton().isSelected())
                         {

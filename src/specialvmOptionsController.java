@@ -95,5 +95,24 @@ public class specialvmOptionsController {
 
             }
         });
+
+        this.specialvmoptionsview.setmaintenanceButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                if (specialvendingmachine == null)
+                {
+                    specialvmoptionsview.getStatusTextfield().setText("No Machine Created...");
+                }
+                else
+                {
+                    maintenanceSVMview maintenancesvmview = new maintenanceSVMview();
+                    maintenanceSVMController maintenanceSVMcontroller = new maintenanceSVMController(maintenancesvmview,specialvendingmachine,specialvmoptionsview);
+                    specialvmoptionsview.setVisible(false);
+                    specialvmoptionsview.setEnabled(false);
+                }
+
+            }
+        });
     }
 }
