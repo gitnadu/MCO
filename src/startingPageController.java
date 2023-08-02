@@ -23,6 +23,7 @@ public class startingPageController {
             public void actionPerformed(ActionEvent e) {
                 startingpageview.setVisible(false);
                 specialvmOptionsView specialOptionPage = new specialvmOptionsView();
+                specialvmOptionsController specialoptionscontroller = new specialvmOptionsController(specialOptionPage);
             }
         });
 

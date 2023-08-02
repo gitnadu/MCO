@@ -5,25 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="198b086d-340e-4810-8f64-9471bb876a21" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RVMview.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RegularVendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegularVendingMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SVMview.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpecialVendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpecialVendingMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/addItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/addItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/addItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/addItemView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/insertMoneyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/insertMoneyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/insertMoneyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/insertMoneyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maintenanceRVMcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/maintenanceRVMcontroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maintenanceRVMview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/maintenanceRVMview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/regularVM.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/regularVMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularVMController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/regularVMview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularVMview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/regularvmOptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularvmOptionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/special/specialvmOptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/specialvmOptionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specialVM.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/specialvmOptionsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/specialvmOptionsView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/startingPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/startingPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/startingPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/startingPageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/totalSalesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/totalSalesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/totalSalesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/totalSalesView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,14 +45,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/1st year/TERM 3/CCPROG3/MCO&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/ASUS/Documents/1st year/TERM 3/CCPROG3/MCO"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

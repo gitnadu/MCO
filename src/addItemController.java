@@ -10,13 +10,7 @@ public class addItemController {
     addItemView additemview;
     RegularVendingMachine VMmodel;
     regularVMview VMview;
-    Boolean properAddition;
-    String itemName;
-    Float itemPrice;
-    Float itemCalories;
-    Integer itemQuantity;
-    addItemController()
-    {}
+
 
     addItemController(addItemView additemview, RegularVendingMachine VMmodel, regularVMview VMview)
     {

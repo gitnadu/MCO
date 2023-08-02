@@ -74,17 +74,18 @@ public class regularvmOptionsController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                if (!(regularvmoptionsview.getStatusTextfield().getText().isEmpty()) || (regularvmoptionsview.getStatusTextfield().getText().compareTo("Enter name ") == 0)){
+                if (!(regularvmoptionsview.getStatusTextfield().getText().isEmpty()) || (regularvmoptionsview.getStatusTextfield().getText().compareTo("Enter name ") != 0)){
                     String VMtitle = regularvmoptionsview.getStatusTextfield().getText();
                     VMmodel = new RegularVendingMachine(VMtitle); // created the vending machine
                     regularvmOptionsView.getStatusTextfield().setText("Machine Created !!");
+
                     regularmachine = new regularVMview();
                     VMcontroller = new regularVMController(regularmachine, VMmodel,regularvmOptionsView, VMtitle);
 
                 }
                 else
                 {
-                regularvmOptionsView.getStatusTextfield().setText("Enter name ");
+                regularvmOptionsView.getStatusTextfield().setText("Err.. Enter name: ");
                 }
 
             }

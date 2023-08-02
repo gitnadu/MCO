@@ -80,9 +80,6 @@ public class Transaction {
         this.selectedItem = selectedItem;
     }
 
-
-
-
     /**
      *
      * Gets the balance of the transaction

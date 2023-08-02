@@ -13,19 +13,19 @@ import java.util.ArrayList;
  */ 
 public class RegularVendingMachine {
 
-    private String name;
-    private Slot[] slots = new Slot[9];
-    private Cash[] cash = new Cash[7];
-    private ArrayList<Item>[] item; // each vending machine has stocks of items
-    private ArrayList<Transaction> transactions;
-    private Item[] itemRecord;
-    private float totalEarnings;
-    private Transaction currentTransaction;
-    private int CURRENTnumberOfSlots;
-    private int MAXnumberOfSlots;
-    private int CURRENTnumberOfItems;
+    protected String name;
+    protected Slot[] slots = new Slot[9];
+    protected Cash[] cash = new Cash[7];
+    protected ArrayList<Item>[] item; // each vending machine has stocks of items
+    protected ArrayList<Transaction> transactions;
+    protected Item[] itemRecord;
+    protected float totalEarnings;
+    protected Transaction currentTransaction;
+    protected int CURRENTnumberOfSlots;
+    protected int MAXnumberOfSlots;
+    protected int CURRENTnumberOfItems;
 
-    private float storedCash;
+    protected float storedCash;
 
     private Item selectedItem;
 
