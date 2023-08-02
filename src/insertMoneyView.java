@@ -25,9 +25,8 @@ public class insertMoneyView extends JFrame {
         moneySlotPanel.setBackground(new java.awt.Color(0, 0, 0));
 
         newMoneySlotPanel.setBackground(Color.black);
-        newMoneySlotPanel.setSize(428,348);
-        newMoneySlotPanel.setLayout(new GridLayout(3,3,5, 5));
-
+        newMoneySlotPanel.setSize(428,287);
+        newMoneySlotPanel.setLayout(new GridLayout(2,3));
 
         moneyPanelButtons[0] = new JButton("20");
         moneyPanelButtons[1] = new JButton("50");
@@ -38,6 +37,7 @@ public class insertMoneyView extends JFrame {
         for (int i=0;i<5;i++)
         {
             moneyPanelButtons[i].setSize(new Dimension(100, 10));
+            moneyPanelButtons[i].setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 25));
             newMoneySlotPanel.add(moneyPanelButtons[i]);
         }
 

@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class insertMoneyController {
     insertMoneyView moneymachine;
     RegularVendingMachine RVMmodel;
@@ -42,7 +43,7 @@ public class insertMoneyController {
                     temp.setValue(20);
                     temp.setCount(1);
                     temp.setTotalValue(20);
-                    moneymachine.getStatusTextField().setText("Adding" + 20);
+                    moneymachine.getStatusTextField().setText("Inserting " + 20);
                 }
                 else if (e.getSource() == (moneymachine.getMoneyPanelButtons())[1] )
                 {
@@ -50,7 +51,7 @@ public class insertMoneyController {
                     temp.setValue(50);
                     temp.setCount(1);
                     temp.setTotalValue(50);
-                    moneymachine.getStatusTextField().setText("Adding" + 50);
+                    moneymachine.getStatusTextField().setText("Inserting " + 50);
                 }
                 else if (e.getSource() == (moneymachine.getMoneyPanelButtons())[2] )
                 {
@@ -58,7 +59,7 @@ public class insertMoneyController {
                     temp.setValue(100);
                     temp.setCount(1);
                     temp.setTotalValue(100);
-                    moneymachine.getStatusTextField().setText("Adding" + 100);
+                    moneymachine.getStatusTextField().setText("Inserting " + 100);
                 }
                 else if (e.getSource() == (moneymachine.getMoneyPanelButtons())[3] )
                 {
@@ -66,7 +67,7 @@ public class insertMoneyController {
                     temp.setValue(200);
                     temp.setCount(1);
                     temp.setTotalValue(200);
-                    moneymachine.getStatusTextField().setText("Adding" + 200);
+                    moneymachine.getStatusTextField().setText("Inserting " + 200);
                 }
                 else if (e.getSource() == (moneymachine.getMoneyPanelButtons())[4] )
                 {
@@ -74,7 +75,7 @@ public class insertMoneyController {
                     temp.setValue(500);
                     temp.setCount(1);
                     temp.setTotalValue(500);
-                    moneymachine.getStatusTextField().setText("Adding" + 500);
+                    moneymachine.getStatusTextField().setText("Inserting " + 500);
                 }
 
             }

@@ -12,12 +12,21 @@ public class totalSalesController {
         this.VMmodel = VMmodel;
         this.maintenanceRVMview = maintenanceRVMview;
 
-        totalsalesview.getSalesTextArea().setText("Item: " + (VMmodel.getItemRecord())[0].getName() + "Total Sold: " + (VMmodel.getItemRecord())[0].getTotalSold());
 
-        for (int i=1;i<VMmodel.getCURRENTnumberOfItems();i++)
+        if (VMmodel.getCURRENTnumberOfItems() > 0)
         {
-            totalsalesview.getSalesTextArea().append("\nItem: " + (VMmodel.getItemRecord())[0].getName() + "Total Sold: " + (VMmodel.getItemRecord())[0].getTotalSold());
+            totalsalesview.getSalesTextArea().setText("Item: " + (VMmodel.getItemRecord())[0].getName() + "   Total Sold: " + (VMmodel.getItemRecord())[0].getTotalSold() + " item/s");
+
+            for (int i=1;i<VMmodel.getCURRENTnumberOfItems();i++)
+            {
+                totalsalesview.getSalesTextArea().append("\nItem: " + (VMmodel.getItemRecord())[0].getName() + "   Total Sold: " + (VMmodel.getItemRecord())[0].getTotalSold() + " items/");
+            }
         }
+        else
+        {
+            totalsalesview.getSalesTextArea().setText("No items sold...");
+        }
+
 
         this.totalsalesview.setreturnButtonListener(new ActionListener()
         {
@@ -25,6 +34,7 @@ public class totalSalesController {
             {
                 totalsalesview.setVisible(false);
                 maintenanceRVMview.setVisible(true);
+                maintenanceRVMview.setEnabled(true);
             }
         });
 

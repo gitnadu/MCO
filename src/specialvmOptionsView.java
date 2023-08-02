@@ -5,32 +5,33 @@ public class specialvmOptionsView extends JFrame {
     specialvmOptionsView()
     {
         title = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
+        maintenanceButton = new javax.swing.JButton();
+        createSpecialVM = new javax.swing.JButton();
+        testSpecialVM = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        title.setFont(new java.awt.Font("Segoe UI Light", 0, 35)); // NOI18N
+        title.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 35));
         title.setText("Special Vending Machine");
         title.setName(""); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Return");
-        jButton1.setToolTipText("");
+        returnButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
+        returnButton.setText("Return");
+        returnButton.setToolTipText("");
+        
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Machine Maintenance");
-        jButton2.setToolTipText("");
+        maintenanceButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
+        maintenanceButton.setText("Machine Maintenance");
+        maintenanceButton.setToolTipText("");
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setText("Create vending machine");
-        jButton3.setToolTipText("");
+        createSpecialVM.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
+        createSpecialVM.setText("Create vending machine");
+        createSpecialVM.setToolTipText("");
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setText("Test Vending Features");
-        jButton4.setToolTipText("");
+        testSpecialVM.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
+        testSpecialVM.setText("Test Vending Features");
+        testSpecialVM.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -39,13 +40,13 @@ public class specialvmOptionsView extends JFrame {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap(95, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(maintenanceButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(createSpecialVM, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                                        .addComponent(testSpecialVM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap(95, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -58,13 +59,13 @@ public class specialvmOptionsView extends JFrame {
                                 .addGap(15, 15, 15)
                                 .addComponent(title)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(createSpecialVM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(testSpecialVM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(maintenanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, Short.MAX_VALUE)
+                                .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, Short.MAX_VALUE)
                                 .addGap(11, 11, 11))
         );
         pack();
@@ -72,9 +73,9 @@ public class specialvmOptionsView extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton returnButton;
+    private javax.swing.JButton maintenanceButton;
+    private javax.swing.JButton createSpecialVM;
+    private javax.swing.JButton testSpecialVM;
     private javax.swing.JLabel title;
 }

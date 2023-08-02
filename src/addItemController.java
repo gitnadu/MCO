@@ -1,5 +1,9 @@
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 
 public class addItemController {
 
@@ -26,6 +30,7 @@ public class addItemController {
             {
                 if (VMmodel.addItem(additemview.getNameTextfield().getText(), Float.parseFloat(additemview.getPriceTextfield().getText()), Float.parseFloat(additemview.getCaloriesTextfield().getText()), Integer.parseInt(additemview.getQuantityTextfield().getText())))
                 {
+                    (VMview.getSlotPanelButtons())[(VMmodel.getCURRENTnumberOfItems() - 1)].setEnabled(true);
                     additemview.dispose();
                     refreshSlots();
                 }
@@ -51,7 +56,7 @@ public class addItemController {
         {
             (VMview.getSlotAreas())[i].setText("\nSlot " + i);
             (VMview.getSlotAreas())[i].append("\n\nName: " + VMmodel.getSlot(i).getPrimaryItem().getName() + "\n" + "Price: " + VMmodel.getSlot(i).getPrimaryItem().getPrice() + "\n" + "Calories: " + VMmodel.getSlot(i).getPrimaryItem().getCalories() + "\n");
-            (VMview.getSlotAreas())[i].append("Remaining" +  VMmodel.getquantityOfItem(VMmodel.getSlot(i).getPrimaryItem()));
+            (VMview.getSlotAreas())[i].append("Remaining: " +  VMmodel.getquantityOfItem(VMmodel.getSlot(i).getPrimaryItem()));
         }
     }
 

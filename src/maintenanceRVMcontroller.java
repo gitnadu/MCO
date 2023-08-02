@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.InetSocketAddress;
 
 public class maintenanceRVMcontroller {
@@ -156,6 +158,56 @@ public class maintenanceRVMcontroller {
                 maintenanceRVMview.setVisible(false);
                 regularvmoptionsview.setVisible(true);
                 regularvmoptionsview.setEnabled(true);
+            }
+        });
+
+        this.maintenanceRVMview.setcollectEarningsButtonsListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                maintenanceRVMview.getCollectEarningsTextField().setText("Collect -> " + RVMmodel.collectEarnings());
+            }
+        });
+
+
+        this.maintenanceRVMview.setcollectEarningsTextFieldListener(new MouseListener()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                maintenanceRVMview.getCollectEarningsTextField().setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        //
+
+        this.maintenanceRVMview.setreplenishChangeButtonListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                maintenanceRVMview.setVisible(false);
+                replenishMoneyView replenishmoneyview = new replenishMoneyView();
+                replenishMoneyController replenishmoneycontroller = new replenishMoneyController(replenishmoneyview,maintenanceRVMview,RVMmodel);
             }
         });
 

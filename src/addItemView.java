@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+
 public class addItemView extends JFrame {
     private javax.swing.JLabel calorieLabel;
     private javax.swing.JTextField caloriesTextfield;
@@ -34,7 +35,7 @@ public class addItemView extends JFrame {
         quantityLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         quantityLabel.setText("Quantity:");
 
-        caloriesTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
+        caloriesTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
 
         titleLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 40)); // NOI18N
         titleLabel.setText("Adding item");
@@ -48,11 +49,11 @@ public class addItemView extends JFrame {
         calorieLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         calorieLabel.setText("Calories:");
 
-        nameTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
+        nameTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
 
-        quantityTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
+        quantityTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
 
-        priceTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
+        priceTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
 
         confirmButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         confirmButton.setText("Confirm");
@@ -60,9 +61,10 @@ public class addItemView extends JFrame {
         cancelButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         cancelButton.setText("Cancel");
 
-        statusTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
+        statusTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
         statusTextfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        statusTextfield.setText("status ");
+        statusTextfield.setText("");
+        statusTextfield.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

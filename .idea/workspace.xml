@@ -6,16 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="198b086d-340e-4810-8f64-9471bb876a21" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RVMview.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RegularVendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegularVendingMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Slot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Slot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/check.png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SVMview.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/addItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/addItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/addItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/addItemView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/insertMoneyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/insertMoneyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/insertMoneyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/insertMoneyView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/maintenanceRVMcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/maintenanceRVMcontroller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/maintenanceRVMview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/maintenanceRVMview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/regularVM.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/regularVMController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularVMController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/regularVMview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularVMview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/regularvmOptionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/regularvmOptionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/specialvmOptionsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/specialvmOptionsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/startingPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/startingPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/startingPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/startingPageView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/totalSalesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/totalSalesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/totalSalesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/totalSalesView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,5 +71,16 @@
       <updated>1688612258472</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

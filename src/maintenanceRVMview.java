@@ -1,10 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+
 
 public class maintenanceRVMview extends JFrame {
     private javax.swing.JButton checknewPriceButton;
     private javax.swing.JButton collectEarningsButtons;
+    private javax.swing.JTextField collectEarningsTextField;
     private javax.swing.JButton eksNewPriceButton;
     private javax.swing.JButton eksrestockButton;
     private javax.swing.JTextField itemNameTextfield;
@@ -43,23 +46,27 @@ public class maintenanceRVMview extends JFrame {
         eksrestockButton = new javax.swing.JButton();
         checknewPriceButton = new javax.swing.JButton();
         eksNewPriceButton = new javax.swing.JButton();
+        collectEarningsTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setSize(new Dimension(600,425));
-        setPreferredSize(new Dimension(600,425));
+        setSize(new Dimension(600,450));
+        setPreferredSize(new Dimension(600,450));
 
         titlePanel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 35)); // NOI18N
         titlePanel.setText("Test Regular Vending Machine");
         titlePanel.setName(""); // NOI18N
 
+        collectEarningsButtons.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
+        collectEarningsButtons.setText("Collect Earnings");
+        collectEarningsButtons.setToolTipText("");
+
         restockButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         restockButton.setText("Restock item");
         restockButton.setToolTipText("");
 
-        collectEarningsButtons.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
-        collectEarningsButtons.setText("Collect Earnings");
-        collectEarningsButtons.setToolTipText("");
+        collectEarningsTextField.setEditable(false);
+
 
         setnewpriceButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         setnewpriceButton.setText("Set new price");
@@ -152,19 +159,22 @@ public class maintenanceRVMview extends JFrame {
                                                                         .addComponent(newpriceTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                                 .addGap(35, 35, 35))))
                         .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(replenishChangeButton)
-                                .addGap(227, 227, 227))
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(collectEarningsButtons)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(totalSalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(2, 2, 2)))
-                                .addContainerGap(71, Short.MAX_VALUE))
+                                                .addGap(44, 44, 44)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(collectEarningsButtons)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(totalSalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(2, 2, 2))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addComponent(collectEarningsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(107, 107, 107)
+                                                .addComponent(replenishChangeButton)))
+                                .addContainerGap(69, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(81, 81, 81)
                                 .addComponent(restockcheckButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,21 +217,19 @@ public class maintenanceRVMview extends JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(checknewPriceButton)
                                         .addComponent(eksNewPriceButton)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(restockcheckButton)
-                                                .addComponent(eksrestockButton)))
+                                        .addComponent(restockcheckButton)
+                                        .addComponent(eksrestockButton))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(totalSalesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(collectEarningsButtons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(replenishChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(52, 52, 52))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(returnButton)
-                                                .addGap(36, 36, 36))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(collectEarningsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(replenishChangeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(returnButton)
+                                .addGap(20, 20, 20))
         );
         pack();
         setVisible(true);
@@ -275,8 +283,18 @@ public class maintenanceRVMview extends JFrame {
         return newPriceLabel;
     }
 
+    public JTextField getCollectEarningsTextField() {
+        return collectEarningsTextField;
+    }
+
+
+
     public void setrestockButtonListener(ActionListener actionListener) {
         this.restockButton.addActionListener(actionListener);
+    }
+
+    public void setcollectEarningsTextFieldListener(MouseListener MouseListener) {
+        this.collectEarningsTextField.addMouseListener(MouseListener);
     }
 
     public void setsetnewpriceButtonListener(ActionListener actionListener) {

@@ -15,7 +15,7 @@ public class RegularVendingMachine {
 
     private String name;
     private Slot[] slots = new Slot[9];
-    private Cash[] cash = new Cash[8];
+    private Cash[] cash = new Cash[7];
     private ArrayList<Item>[] item; // each vending machine has stocks of items
     private ArrayList<Transaction> transactions;
     private Item[] itemRecord;
@@ -64,10 +64,9 @@ public class RegularVendingMachine {
         cash[4] = new Cash(50);
         cash[5] = new Cash(100);
         cash[6] = new Cash(200);
-        cash[7] = new Cash(500);
         storedCash = 0;
 
-        for (int i=0;i<8;i++)
+        for (int i=0;i<7;i++)
         {
             this.cash[i].setCount(10);
             this.cash[i].setTotalValue(10 * this.cash[i].getValue());
@@ -321,12 +320,11 @@ public class RegularVendingMachine {
     public float collectEarnings() 
     {
 
-        float totalEarnings = this.totalEarnings;
+        float totalEarned = this.totalEarnings;
 
-        this.giveChange(totalEarnings);
         this.totalEarnings = 0;
         
-        return totalEarnings;
+        return totalEarned;
     }
 
     public int getCURRENTnumberOfItems() {
@@ -950,9 +948,9 @@ public class RegularVendingMachine {
      */
     public boolean isChangeEnough(float money)
     {
-        int countOfEach[] =  new int[8];
+        int countOfEach[] =  new int[7];
 
-        for(int i = 0;i<8;i++)
+        for(int i = 0;i<7;i++)
         {
             countOfEach[i] = this.cash[i].getCount();
         }
@@ -1008,12 +1006,7 @@ public class RegularVendingMachine {
         {
             while(money != 0 )
             {
-                if (money-500 >= 0)
-                {
-                    money -= 500;
-                    countOfEach[7] -= 1;
-                }
-                else if (money-200 >= 0)
+                if (money-200 >= 0)
                 {
                     money -= 200;
                     countOfEach[6] -= 1;
@@ -1051,7 +1044,7 @@ public class RegularVendingMachine {
             }
         }
 
-        for(int i = 0;i<8;i++)
+        for(int i = 0;i<7;i++)
         {
             if (countOfEach[i] < 0)
                 return false;

@@ -76,8 +76,10 @@ public class regularVMview extends javax.swing.JFrame{
 
 
         purchaseButton.setText("✅");
+        purchaseButton.setEnabled(false);
 
         cancelButton.setText("❌");
+        cancelButton.setEnabled(false);
 
         nameLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(242, 242, 242));
@@ -159,6 +161,7 @@ public class regularVMview extends javax.swing.JFrame{
         newPanelSlots.setBackground(Color.black);
         newPanelSlots.setSize(470,412);
         newPanelSlots.setLayout(new GridLayout(3,3,5, 5));
+
         slotPanel.add(newPanelSlots);
 
         slotPanels = new JPanel[9];
@@ -181,10 +184,9 @@ public class regularVMview extends javax.swing.JFrame{
 
         for (int i=0;i<9;i++)
         {
-            slotPanels[i].setBackground(new java.awt.Color(255-i*10, 255-i*10, 255-i*10));
+            slotPanels[i].setBackground(new java.awt.Color(255, 255, 255));
             slotPanels[i].setSize(new Dimension(40, 40));
             slotPanels[i].add(slotAreas[i]);
-
         }
         for (int i=0;i<9;i++)
         {
@@ -196,17 +198,21 @@ public class regularVMview extends javax.swing.JFrame{
         balanceLabel.setText("Balance:");
 
         itemTrayTextfield.setEditable(false);
-        itemTrayTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
+        itemTrayTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 20));
         itemTrayTextfield.setHorizontalAlignment(JTextField.CENTER);
 
         changeTextArea.setEditable(false);
         changeTextArea.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 11));
+        changeScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+        changeScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
         changeScrollPane.setViewportView(changeTextArea);
 
         putmoneyButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         putmoneyButton.setText("Put Money");
 
+
         balanceTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
+        balanceTextfield.setHorizontalAlignment(JTextField.CENTER);
         balanceTextfield.setAutoscrolls(false);
         balanceTextfield.setFocusable(false);
         balanceTextfield.setEditable(false);
@@ -231,8 +237,8 @@ public class regularVMview extends javax.swing.JFrame{
 
         JPanel newButtonsPanel = new JPanel();
         newButtonsPanel.setBackground(Color.black);
-        newButtonsPanel.setSize(188,147);
-        newButtonsPanel.setLayout(new GridLayout(3,3,5, 5));
+        newButtonsPanel.setSize(190,151);
+        newButtonsPanel.setLayout(new GridLayout(3,3));
         buttonsPanel.add(newButtonsPanel);
 
         slotPanelButtons = new JButton[9];
@@ -245,12 +251,20 @@ public class regularVMview extends javax.swing.JFrame{
         for (int i=0;i<9;i++)
         {
             slotPanelButtons[i].setSize(new Dimension(40, 40));
+            slotPanelButtons[i].setEnabled(false);
+            slotPanelButtons[i].setFocusable(false);
+            slotPanelButtons[i].setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12));
             newButtonsPanel.add(slotPanelButtons[i]);
         }
 
         statusRVMTextfield.setEditable(false);
+        statusRVMTextfield.setText("");
+        statusRVMTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 14));
+        statusRVMTextfield.setHorizontalAlignment(JTextField.CENTER);
+
         changeTextArea.setColumns(20);
         changeTextArea.setRows(5);
+        changeTextArea.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12));
 
         additemButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         additemButton.setText("Add item");
@@ -337,9 +351,6 @@ public class regularVMview extends javax.swing.JFrame{
         return balanceTextfield;
     }
 
-    public ArrayList<JPanel> getTrueSlots() {
-        return trueSlots;
-    }
 
     public JTextArea[] getSlotAreas() {
         return slotAreas;
@@ -375,6 +386,14 @@ public class regularVMview extends javax.swing.JFrame{
 
     public JLabel getTitleLabel() {
         return titleLabel;
+    }
+
+    public JButton getPurchaseButton() {
+        return purchaseButton;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
     }
 
     public void setreturnButtonListener(ActionListener actionListener) {

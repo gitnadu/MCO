@@ -1,5 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+
 
 public class totalSalesView extends JFrame {
 
@@ -13,11 +15,18 @@ public class totalSalesView extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         totalSalesLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 36)); // NOI18N
-        totalSalesLabel.setText("Total Sales");
+        totalSalesLabel.setText("Total Sales: ");
 
         salesTextArea.setColumns(20);
         salesTextArea.setRows(5);
+        salesTextArea.setEditable(false);
         salesScrollPane.setViewportView(salesTextArea);
+
+
+        salesScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
+        salesScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
+
+        salesTextArea.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 19));
 
         returnButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 14)); // NOI18N
         returnButton.setText("Return");

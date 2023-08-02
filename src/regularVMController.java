@@ -9,20 +9,17 @@ public class regularVMController {
     regularvmOptionsView regularoptionsview;
     regularVMview machineView;
     RegularVendingMachine VMmodel;
-    Item tempSelectedItem;
 
-    regularVMController(regularVMview regularMachineView, RegularVendingMachine VMmodel, regularvmOptionsView regularoptionsview)
+    regularVMController(regularVMview regularMachineView, RegularVendingMachine VMmodel, regularvmOptionsView regularoptionsview, String title)
     {
         this.machineView = regularMachineView;
         this.VMmodel = VMmodel;
         this.regularoptionsview = regularoptionsview;
 
-        refreshSlots();
+        machineView.setTitle(title);
 
         machineView.getBalanceTextfield().setText("" + VMmodel.getStoredCash());
         machineView.getTitleLabel().setText(VMmodel.getName());
-
-
 
         this.machineView.setreturnButtonListener(new ActionListener()
         {
@@ -47,10 +44,7 @@ public class regularVMController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(VMmodel.getSelectedItem() == null)
-                {
-                    machineView.getStatusRVMTextfield().setText("Please select item..");
-                }
+
                 if (!((VMmodel.getStoredCash() - VMmodel.getSelectedItem().getPrice() ) >= 0))
                 {
                     machineView.getStatusRVMTextfield().setText("Insufficient Funds!");
@@ -99,6 +93,15 @@ public class regularVMController {
                         machineView.getChangeTextArea().append(changeHolder.get(i).toString() + "\n");
                     }
                 }
+                machineView.getNameTextfield().setText("");
+                machineView.getPriceTextfield().setText("");
+                machineView.getCaloriesTextfield().setText("");
+
+                machineView.getStatusRVMTextfield().setText("Purchase Cancelled");
+
+                machineView.getPurchaseButton().setEnabled(false);
+                machineView.getCancelButton().setEnabled(false);
+
                 VMmodel.setStoredCash(0);
                 machineView.getBalanceTextfield().setText(""+VMmodel.getStoredCash());
             }
@@ -178,6 +181,8 @@ public class regularVMController {
                         {
                             VMmodel.setSelectedItem(VMmodel.getSlot(i).getPrimaryItem());
                             machineView.getStatusRVMTextfield().setText("Selecting Item " + i);
+                            machineView.getPurchaseButton().setEnabled(true);
+                            machineView.getCancelButton().setEnabled(true);
                             refreshLCD(i);
                             refreshSlots();
                         }

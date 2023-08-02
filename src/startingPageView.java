@@ -18,21 +18,21 @@ public class startingPageView extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mainTitle.setFont(new java.awt.Font("Segoe UI Light", 0, 35)); // NOI18N
+        mainTitle.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 33));
         mainTitle.setText("Vending Machine Factory");
         mainTitle.setName(""); // NOI18N
 
 
-        createREG.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        createREG.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
         createREG.setText("Create Regular Vending Machine");
         createREG.setToolTipText("");
 
-        createSPE.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        createSPE.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
         createSPE.setText("Create Special Vending Machine");
         createSPE.setToolTipText("");
 
 
-        quitBut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        quitBut.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18));
         quitBut.setText("Quit");
         quitBut.setToolTipText("");
 
