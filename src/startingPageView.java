@@ -63,10 +63,11 @@ public class startingPageView extends javax.swing.JFrame{
                                 .addComponent(quitBut, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54))
         );
-
+        setResizable(false);
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
+
     }
 
     public void setcreateREGListener(ActionListener actionListener) {

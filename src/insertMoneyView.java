@@ -19,8 +19,7 @@ public class insertMoneyView extends JFrame {
         newMoneySlotPanel = new JPanel();
         moneyPanelButtons = new JButton[5];
         statusTextField = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         moneySlotPanel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -63,10 +62,10 @@ public class insertMoneyView extends JFrame {
         addMoneyLabel.setText("Add money");
 
         confirmButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
-        confirmButton.setText("Confirm");
+        confirmButton.setText("CONFIRM");
 
         cancelButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
-        cancelButton.setText("Cancel");
+        cancelButton.setText("CANCEL");
 
         statusTextField.setEditable(false);
         statusTextField.setBackground(new java.awt.Color(255, 255, 255));

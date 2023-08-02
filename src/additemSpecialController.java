@@ -13,11 +13,29 @@ public class additemSpecialController {
         this.specialvendingmachine = specialvendingmachine;
         this.SVMview = specialvmview;
 
+        if(specialvendingmachine.getBaseItemIndex().size() > 0)
+        {
+            additemspecialview.getOtherItemRButton().setEnabled(true);
+        }
+
         this.additemspecialview.setconfirmButtonListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e){
-                if (additemspecialview.getNameTextfield().getText().isEmpty() || additemspecialview.getPriceTextfield().getText().isEmpty() || additemspecialview.getCaloriesTextfield().getText().isEmpty() || additemspecialview.getQuantityTextfield().getText().isEmpty())
+                String itemName;
+                Float itemPrice;
+                Float itemCalories;
+                Integer itemQuantity;
+
+                itemName = additemspecialview.getNameTextfield().getText();
+                itemPrice = Float.parseFloat(additemspecialview.getPriceTextfield().getText());
+                itemCalories = Float.parseFloat(additemspecialview.getCaloriesTextfield().getText());
+                itemQuantity = Integer.parseInt(additemspecialview.getQuantityTextfield().getText());
+                if (itemQuantity < 10)
+                {
+                    additemspecialview.getStatusTextfield().setText("Add at least 10");
+                }
+                else if (additemspecialview.getNameTextfield().getText().isEmpty() || additemspecialview.getPriceTextfield().getText().isEmpty() || additemspecialview.getCaloriesTextfield().getText().isEmpty() || additemspecialview.getQuantityTextfield().getText().isEmpty())
                 {
                     if (!(additemspecialview.getBaseItemRButton().isSelected()) && !(additemspecialview.getSlotItemRButton().isSelected()) && !(additemspecialview.getOtherItemRButton().isSelected())) {
                         additemspecialview.getStatusTextfield().setText("Error...");
@@ -27,6 +45,10 @@ public class additemSpecialController {
                         additemspecialview.getStatusTextfield().setText("Incomplete details");
                     }
                 }
+                else if(itemPrice < 0 || itemCalories < 0 ||itemQuantity < 0)
+                {
+                    additemspecialview.getStatusTextfield().setText("Invalid input..");
+                }
                 else
                 {
                     if (!(additemspecialview.getBaseItemRButton().isSelected()) && !(additemspecialview.getSlotItemRButton().isSelected()) && !(additemspecialview.getOtherItemRButton().isSelected())) {
@@ -34,35 +56,96 @@ public class additemSpecialController {
                     }
                     else
                     {
-                        String itemName;
-                        Float itemPrice;
-                        Float itemCalories;
-                        Integer itemQuantity;
-
-                        itemName = additemspecialview.getNameTextfield().getText();
-                        itemPrice = Float.parseFloat(additemspecialview.getPriceTextfield().getText());
-                        itemCalories = Float.parseFloat(additemspecialview.getCaloriesTextfield().getText());
-                        itemQuantity = Integer.parseInt(additemspecialview.getQuantityTextfield().getText());
-
                         if (additemspecialview.getBaseItemRButton().isSelected())
                         {
-                            SVMview.getStatusSVMTextfield().setText("base");
-                            specialvendingmachine.addBaseItem(itemName,itemPrice,itemCalories,itemQuantity);
+                            boolean exists = false;
+                            for (int i=0;i<specialvendingmachine.getBaseItemIndex().size();i++)
+                            {
+                                int index = (specialvendingmachine.getBaseItemIndex()).get(i);
+                                if (itemName.compareTo( (specialvendingmachine.getExclusiveItemRecord())[index].getName())==0)
+                                {
+                                    exists = true;
+                                }
+                            }
+                            if (exists)
+                            {
+                                additemspecialview.getStatusTextfield().setText("Already exists");
+                            }
+                            else if (specialvendingmachine.getBaseItemIndex().size() > 2)
+                            {
+                                additemspecialview.getStatusTextfield().setText("Slots Full..");
+                            }
+                            else
+                            {
+                                additemspecialview.getStatusTextfield().setText("Successfully Added!");
+                                specialvendingmachine.addBaseItem(itemName,itemPrice,itemCalories,itemQuantity);
+                                SVMview.getCustomizeButton().setEnabled(true);
+                                additemspecialview.getOtherItemRButton().setEnabled(true);
+                            }
+
                         }
                         else if (additemspecialview.getSlotItemRButton().isSelected())
                         {
-                            SVMview.getStatusSVMTextfield().setText("slot");
-                            specialvendingmachine.addItem(itemName,itemPrice,itemCalories,itemQuantity);
-                            (SVMview.getSlotButtons())[specialvendingmachine.getCURRENTnumberOfItems()-1].setEnabled(true);
+                            boolean exists = false;
+                            for (int i=0;i<9;i++)
+                            {
+                                if (itemName.compareTo((specialvendingmachine.getItemRecord())[i].getName())==0)
+                                {
+                                    exists = true;
+                                }
+                            }
+
+                            if (exists)
+                            {
+                                additemspecialview.getStatusTextfield().setText("Already exists");
+                            }
+                            else if (specialvendingmachine.getCURRENTnumberOfItems() > 8)
+                            {
+                                additemspecialview.getStatusTextfield().setText("Slots Full..");
+                            }
+                            else
+                            {
+                                additemspecialview.getStatusTextfield().setText("Successfully Added!");
+                                specialvendingmachine.addItem(itemName,itemPrice,itemCalories,itemQuantity);
+                                (SVMview.getSlotButtons())[specialvendingmachine.getCURRENTnumberOfItems()-1].setEnabled(true);
+                            }
+
                         }
                         else if (additemspecialview.getOtherItemRButton().isSelected())
                         {
-                            SVMview.getStatusSVMTextfield().setText("toppings");
-                            specialvendingmachine.addOtherItem(itemName,itemPrice,itemCalories,itemQuantity);
+                            boolean exists = false;
+                            for (int i=0;i<specialvendingmachine.getOtherItemIndex().size();i++)
+                            {
+                                int index = (specialvendingmachine.getOtherItemIndex()).get(i);
+                                if (itemName.compareTo( (specialvendingmachine.getExclusiveItemRecord())[index].getName())==0)
+                                {
+                                    exists = true;
+                                }
+                            }
+
+                            if (exists)
+                            {
+                                additemspecialview.getStatusTextfield().setText("Already exists");
+                            }
+                            else if (specialvendingmachine.getOtherItemIndex().size() > 8)
+                            {
+                                additemspecialview.getStatusTextfield().setText("Slots Full");
+                            }
+                            else
+                            {
+                                specialvendingmachine.addOtherItem(itemName,itemPrice,itemCalories,itemQuantity);
+                                additemspecialview.getStatusTextfield().setText("Successfully Added!");
+                            }
+
                         }
-                        additemspecialview.getStatusTextfield().setText("Successfully Added!");
-                        }
+
+                    }
                 }
+
+                additemspecialview.getNameTextfield().setText("");
+                additemspecialview.getPriceTextfield().setText("");
+                additemspecialview.getCaloriesTextfield().setText("");
+                additemspecialview.getQuantityTextfield().setText("");
 
             }
         });
@@ -113,8 +196,8 @@ public class additemSpecialController {
                 additemspecialview.getOtherItemRButton().setSelected(true);
             }
         });
-
-
     }
+
+
 
 }

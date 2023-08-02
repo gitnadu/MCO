@@ -20,7 +20,6 @@ public class addItemSpecialView extends JFrame {
         baseItemRButton = new javax.swing.JRadioButton();
         otherItemRButton = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cancelButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         cancelButton.setText("Cancel");
@@ -62,6 +61,8 @@ public class addItemSpecialView extends JFrame {
 
         otherItemRButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         otherItemRButton.setText("Unpurchasable by itself");
+        otherItemRButton.setEnabled(false);
+        setResizable(false);
 
         ButtonGroup buttongroup = new ButtonGroup();
         buttongroup.add(baseItemRButton);

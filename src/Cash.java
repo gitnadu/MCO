@@ -11,7 +11,12 @@ public class Cash {
     private int count;
     private int totalValue;
 
-
+    /**
+     *
+     * Constructs a cash object, with its value
+     *
+     * @param value value of the cash
+     */
     Cash(int value)
     {
         this.value = value;
@@ -30,7 +35,6 @@ public class Cash {
         return count;
     }
 
-
     /**
      *
      * Gets the value
@@ -41,7 +45,6 @@ public class Cash {
 
         return value;
     }
-
 
     /**
      *
@@ -68,7 +71,6 @@ public class Cash {
 
         this.value = value;
     }
-
 
     /**
      *

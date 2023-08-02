@@ -22,6 +22,7 @@ public class insertMoneyController {
             public void actionPerformed(ActionEvent e) {
                 RVMmodel.addStoredCash(temp.getTotalValue());
                 RVMview.getBalanceTextfield().setText("" + RVMmodel.getStoredCash());
+                RVMview.getStatusRVMTextfield().setText("Money Inserted! ");
                 moneymachine.dispose();
             }
         });

@@ -1,5 +1,11 @@
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
+/**
+ * The class implements a special vending machine that has the features of a regular vending machine
+ * but can also customize items.
+ *
+ * @author Adriel Manuel D. Fancubit
+ */
 
 public class SpecialVendingMachine extends RegularVendingMachine{
 
@@ -17,7 +23,13 @@ public class SpecialVendingMachine extends RegularVendingMachine{
     SpecialTransaction specialCurrentTransaction;
     // arraylist of items that will be customized
 
-
+    /**
+     *Constructs a special vending machine. To construct a special vending machine,
+     * its name must be specified
+     *
+     * @param name the name of the vending machine
+     *
+     */
     SpecialVendingMachine(String name)
     {
         super(name);
@@ -33,16 +45,45 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         CURRENTnumberOfExclusiveSlots = 0;
     }
 
+
+    /**
+     *
+     * Gets the indexes of the base items, this also gets the count of the base items
+     *
+     * @return the arraylist of indexes mapped to base items
+     */
     public ArrayList<Integer> getBaseItemIndex() {
+
         return baseItemIndex;
     }
 
+
+    /**
+     *
+     * Gets the indexes of the dependent items, this also gets the count of the dependent items
+     *
+     * @return the arraylist of indexes mapped to dependent items
+     */
     public ArrayList<Integer> getOtherItemIndex() {
+
         return otherItemIndex;
     }
 
+
+
+    /**
+     *
+     * Add base item
+     *
+     * @param itemName  the item name.
+     * @param itemPrice  the item price.
+     * @param itemCalories  the item calories.
+     * @param itemQuantity  the item quantity.
+     * @return true if item is successfully added
+     */
     public boolean addBaseItem(String itemName , float itemPrice, float itemCalories, int itemQuantity)
     {
+
         if (itemPrice < 0)
         {
             return false;
@@ -78,10 +119,21 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
         return true;
     }
-    // adding a base item in the machine
 
+
+    /**
+     *
+     * Add other item
+     *
+     * @param itemName  the item name.
+     * @param itemPrice  the item price.
+     * @param itemCalories  the item calories.
+     * @param itemQuantity  the item quantity.
+     * @return true if item is successfully added
+     */
     public boolean addOtherItem(String itemName ,float itemPrice, float itemCalories,  int itemQuantity)
     {
+
         if (itemPrice < 0)
         {
             return false;
@@ -119,8 +171,18 @@ public class SpecialVendingMachine extends RegularVendingMachine{
     // adding another item in the machine
 
 
+
+
+    /**
+     *
+     * Customizing item
+     *
+     * @param item  the item to be added to the list of items to be customized
+     * @return true if successfully added
+     */
     public boolean customizingItem(Item item)
     {
+
 
         if (isExclusiveItemAvailable(item))
         {
@@ -130,8 +192,16 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         return false;
     }
 
+
+    /**
+     *
+     * Gets the total calories of the customized item
+     *
+     * @return the total calories of the customized item
+     */
     public float getCaloriesCustomizedItem()
     {
+
         float sum = 0;
         // iterates over the calories of each item
         for(int i = 0; i <customizedItem.size();i++)
@@ -144,8 +214,17 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         return sum;
     }
 
+
+
+    /**
+     *
+     * Gets the total price of customized item
+     *
+     * @return the total price of customized item
+     */
     public float getPriceCustomizedItem()
     {
+
         float sum = 0;
         // iterates over the price of each item
         for(int i = 0; i <customizedItem.size();i++)
@@ -157,15 +236,24 @@ public class SpecialVendingMachine extends RegularVendingMachine{
     }
 
 
+
+    /**
+     *
+     * Purchase the customized item
+     *
+     */
     public void purchaseCustomizedItem() {
 
         while(customizedItem.size()>0) {
 
             for (int j = 0; j < 9; j++) {
-                if (customizedItem.get(customizedItem.size() - 1).getName().compareTo(itemRecord[j].getName()) == 0) {
-                    item[j].remove(item[j].size() - 1);
-                    itemRecord[j].setTotalSold(itemRecord[j].getTotalSold() + 1);
-                    customizedItem.remove(customizedItem.size() - 1);
+                if(customizedItem.size() > 0)
+                {
+                    if (customizedItem.get(customizedItem.size() - 1).getName().compareTo(itemRecord[j].getName()) == 0) {
+                        item[j].remove(item[j].size() - 1);
+                        itemRecord[j].setTotalSold(itemRecord[j].getTotalSold() + 1);
+                        customizedItem.remove(customizedItem.size() - 1);
+                    }
                 }
             }
 
@@ -181,7 +269,15 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         }
     }
 
+
+    /**
+     *
+     * do a special transaction
+     *
+     * @return true of transaction is a success
+     */
     public boolean doSpecialTransaction() {
+
 
         // if the customer does not have any more money
         if (this.storedCash== 0)
@@ -238,8 +334,18 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         return false;
     }
 
+
+
+    /**
+     *
+     * checks if an exclusive item is available
+     *
+     * @param item  the item.
+     * @return true if available
+     */
     public boolean isExclusiveItemAvailable(Item item)
     {
+
         for (int i=0;i<12;i++)
         {
             if (item.getName().compareTo(exclusiveItemRecord[i].getName())==0)
@@ -255,27 +361,75 @@ public class SpecialVendingMachine extends RegularVendingMachine{
     }
 
 
+
+    /**
+     *
+     * Gets the array of actual exclusive items
+     *
+     * @return the exclusive items
+     */
     public ArrayList<Item>[] getExclusiveItems() {
+
         return exclusiveItems;
     }
 
+
+    /**
+     *
+     * Gets the number of exclusive items in the machine
+     *
+     * @return the number of exclusive items in the machine
+     */
     public int getCURRENTnumberOfExclusiveItems() {
+
         return CURRENTnumberOfExclusiveItems;
     }
 
+
+    /**
+     *
+     * Gets record of exclusive items added in the machine
+     *
+     * @return the exclusive item record
+     */
     public Item[] getExclusiveItemRecord() {
+
         return exclusiveItemRecord;
     }
 
+
+    /**
+     *
+     * Gets the number of exclusive slots in the machine
+     *
+     * @return the number of exclusive slots in the machine
+     */
     public int getCURRENTnumberOfExclusiveSlots() {
+
         return CURRENTnumberOfExclusiveSlots;
     }
 
+
+    /**
+     *
+     * Gets the exclusive slot
+     *
+     * @return the exclusive slot
+     */
     public ExclusiveSlot[] getExclusiveSlot() {
+
         return exclusiveSlot;
     }
 
+
+    /**
+     *
+     * Gets the customized item
+     *
+     * @return the customized item
+     */
     public ArrayList<Item> getCustomizedItem() {
+
         return customizedItem;
     }
 }

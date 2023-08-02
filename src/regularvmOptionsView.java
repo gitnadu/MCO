@@ -38,7 +38,7 @@ public class regularvmOptionsView extends JFrame {
         testFeaturesButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         testFeaturesButton.setText("Test Vending Features");
         testFeaturesButton.setToolTipText("");
-
+        setResizable(false);
 
         statusTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         statusTextfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);

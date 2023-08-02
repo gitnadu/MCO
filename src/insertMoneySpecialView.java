@@ -19,8 +19,7 @@ public class insertMoneySpecialView extends JFrame {
         newMoneySlotPanel = new JPanel();
         moneyPanelButtons = new JButton[5];
         statusTextField = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         moneySlotPanel.setBackground(new java.awt.Color(0, 0, 0));
 

@@ -44,8 +44,11 @@ public class regularVMController {
         {
             public void actionPerformed(ActionEvent e)
             {
-
-                if (!((VMmodel.getStoredCash() - VMmodel.getSelectedItem().getPrice() ) >= 0))
+                if (!(VMmodel.isChangeEnough(VMmodel.getStoredCash() - VMmodel.getSelectedItem().getPrice())))
+                {
+                    machineView.getStatusRVMTextfield().setText("Change insufficient..");
+                }
+                else if (!((VMmodel.getStoredCash() - VMmodel.getSelectedItem().getPrice() ) >= 0))
                 {
                     machineView.getStatusRVMTextfield().setText("Insufficient Funds!");
                 }

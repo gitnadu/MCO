@@ -22,16 +22,49 @@ public class addItemController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                if (VMmodel.addItem(additemview.getNameTextfield().getText(), Float.parseFloat(additemview.getPriceTextfield().getText()), Float.parseFloat(additemview.getCaloriesTextfield().getText()), Integer.parseInt(additemview.getQuantityTextfield().getText())))
+                String itemName = additemview.getNameTextfield().getText();
+                Integer itemQuantity = Integer.parseInt(additemview.getQuantityTextfield().getText());
+                boolean exists = false;
+
+                for (int i=0;i<9;i++)
                 {
-                    (VMview.getSlotPanelButtons())[(VMmodel.getCURRENTnumberOfItems() - 1)].setEnabled(true);
-                    additemview.dispose();
-                    refreshSlots();
+                    if (itemName.compareTo((VMmodel.getItemRecord())[i].getName())==0)
+                    {
+                        exists = true;
+                    }
+                }
+
+                if (itemQuantity < 10)
+                {
+                    additemview.getStatusTextfield().setText("Add at least 10");
+                }
+                else if (!(VMmodel.CURRENTnumberOfItems > 8))
+                {
+                    if (!(exists))
+                    {
+                        if (VMmodel.addItem(additemview.getNameTextfield().getText(), Float.parseFloat(additemview.getPriceTextfield().getText()), Float.parseFloat(additemview.getCaloriesTextfield().getText()), Integer.parseInt(additemview.getQuantityTextfield().getText())))
+                        {
+                            (VMview.getSlotPanelButtons())[(VMmodel.getCURRENTnumberOfItems() - 1)].setEnabled(true);
+                            additemview.dispose();
+                            VMview.getStatusRVMTextfield().setText("Item added!");
+                            refreshSlots();
+                        }
+                        else
+                        {
+                            additemview.getStatusTextfield().setText("Invalid...");
+                        }
+                    }
+                    else
+                    {
+                        additemview.getStatusTextfield().setText("Item already exists");
+                    }
+
                 }
                 else
                 {
-                    additemview.getStatusTextfield().setText("Error, invalid item. Please check");
+                    additemview.getStatusTextfield().setText("Machine Full..");
                 }
+
             }
         });
 

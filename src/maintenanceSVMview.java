@@ -49,6 +49,7 @@ public class maintenanceSVMview extends JFrame {
         collectEarningsTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         setSize(new Dimension(600,450));
         setPreferredSize(new Dimension(600,450));

@@ -27,34 +27,10 @@ public class Transaction {
     }
 
     /**
-     *
-     * Prints receipt of the transaction
-     *
-     */
-    public void printReceipt()
-    {
-
-        if ((this.getSelectedItem()) != null)
-        {
-            System.out.println("ITEM: " + (this.getSelectedItem()).getName());
-            System.out.println("Price: " + this.totalAmount);
-        }
-        else
-        {
-            System.out.println("ITEM: BLANK");
-            System.out.println("Price: ---");
-            System.out.println("Change: " + this.balance);
-        }
-
-    }
-
-
-    /**
      * Checking if the balance of the transaction is enough and the slot is available
      * before setting the selected item of the transaction
      *
      * @param item the selected item
-     * @param slot the selected slot
      * @return boolean if the selected item is available and can be purchased with the money
      */
 
@@ -78,29 +54,6 @@ public class Transaction {
      */
     public void setSelectedItem(Item selectedItem) {
         this.selectedItem = selectedItem;
-    }
-
-    /**
-     *
-     * Gets the balance of the transaction
-     *
-     * @return balance the balance of the transaction
-     */
-    public float getBalance() {
-
-        return balance;
-    }
-
-
-    /**
-     *
-     * Gets the selected item in the transaction
-     *
-     * @return selectedItem the selected item
-     */
-    public Item getSelectedItem() {
-
-        return selectedItem;
     }
 
     /**

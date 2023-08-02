@@ -1,14 +1,12 @@
 
 /**
 
-
  * This class implements an item object. It includes a name, its calories,
  * and its price
  * 
  * @author Adriel Manuel D. Fancubit
  *
  */
-
 
 public class Item {
     private float calories;
@@ -29,20 +27,6 @@ public class Item {
         this.calories = calories;
         this.price = price;
         this.name = name;
-    }
-
-
-    /**
-     *
-     * Constructs an item object, with an item object
-     *
-     * @param item an item object
-     */
-    Item(Item item)
-    {
-        this.calories = item.getCalories();
-        this.price = item.getPrice();
-        this.name = item.getName();
     }
 
     public int getTotalSold() {
@@ -71,9 +55,6 @@ public class Item {
 
         return calories;
     }
-
-
-
 
     /**
      *

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,7 +32,8 @@ public class regularvmOptionsController {
                 regularvmOptionsView.getConfirmButton().setVisible(true);
                 regularvmOptionsView.getStatusTextfield().setVisible(true);
                 regularvmOptionsView.getStatusTextfield().setEditable(true);
-                regularvmOptionsView.getStatusTextfield().setText("Enter name ");
+                regularvmOptionsView.getStatusTextfield().setText("<Name>");
+                regularvmOptionsView.getStatusTextfield().setHorizontalAlignment(JTextField.CENTER);
             }
         });
 
@@ -41,7 +43,7 @@ public class regularvmOptionsController {
             {
                 if (VMmodel == null)
                 {
-                    regularvmOptionsView.getStatusTextfield().setText("No machine created...");
+                    regularvmOptionsView.getStatusTextfield().setText("Machine nonexistent..");
                 }
                 else
                 {
@@ -57,7 +59,7 @@ public class regularvmOptionsController {
             {
                 if (VMmodel == null)
                 {
-                    regularvmOptionsView.getStatusTextfield().setText("No Machine Created...");
+                    regularvmOptionsView.getStatusTextfield().setText("Machine nonexistent..");
                 }
                 else
                 {
@@ -79,6 +81,7 @@ public class regularvmOptionsController {
                     VMmodel = new RegularVendingMachine(VMtitle); // created the vending machine
                     regularvmOptionsView.getStatusTextfield().setText("Machine Created !!");
 
+                    regularvmOptionsView.getStatusTextfield().setEditable(false);
                     regularmachine = new regularVMview();
                     VMcontroller = new regularVMController(regularmachine, VMmodel,regularvmOptionsView, VMtitle);
 

@@ -117,8 +117,11 @@ public class maintenanceRVMcontroller {
                         (RVMmodel.getItemRecord())[i].setPrice(newPrice);// changes the item record
 
                         // changes the price of every item in existence
-                        for (int j = 0; i < (RVMmodel.getItem())[i].size(); i++) {
-                            (RVMmodel.getItem())[i].get(j).setPrice((RVMmodel.getItemRecord())[i].getPrice());
+                        if ((RVMmodel.getItem())[i].size() > 0)
+                        {
+                            for (int j = 0; i < (RVMmodel.getItem())[i].size(); i++) {
+                                (RVMmodel.getItem())[i].get(j).setPrice((RVMmodel.getItemRecord())[i].getPrice());
+                            }
                         }
 
                         // changes the price of the item in the slot

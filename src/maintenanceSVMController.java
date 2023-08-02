@@ -69,9 +69,10 @@ public class maintenanceSVMController {
             {
                 Integer newQuantity;
                 String itemName;
-
                 itemName = maintenanceSVMview.getItemNameTextfield().getText();
                 newQuantity = Integer.parseInt(maintenanceSVMview.getRestockQuantityTextfield().getText());
+
+
                 for (int i=0;i<9;i++)
                 {
                     if (itemName.compareTo(SVMmodel.itemRecord[i].getName())==0)
@@ -136,8 +137,11 @@ public class maintenanceSVMController {
                         (SVMmodel.getItemRecord())[i].setPrice(newPrice);// changes the item record
 
                         // changes the price of every item in existence
-                        for (int j = 0; j < (SVMmodel.getItem())[i].size(); j++) {
-                            (SVMmodel.getItem())[i].get(j).setPrice((SVMmodel.getItemRecord())[i].getPrice());
+                        if ((SVMmodel.getItem())[i].size()>0)
+                        {
+                            for (int j = 0; j < (SVMmodel.getItem())[i].size(); j++) {
+                                (SVMmodel.getItem())[i].get(j).setPrice((SVMmodel.getItemRecord())[i].getPrice());
+                            }
                         }
 
                         // changes the price of the item in the slot
@@ -159,9 +163,13 @@ public class maintenanceSVMController {
                         (SVMmodel.getExclusiveItemRecord())[i].setPrice(newPrice);// changes the item record
 
                         // changes the price of every item in existence
-                        for (int j = 0; j < (SVMmodel.getExclusiveItems())[i].size(); j++) {
-                            (SVMmodel.getExclusiveItems())[i].get(j).setPrice((SVMmodel.getExclusiveItemRecord())[i].getPrice());
+                        if((SVMmodel.getExclusiveItems())[i].size() > 0)
+                        {
+                            for (int j = 0; j < (SVMmodel.getExclusiveItems())[i].size(); j++) {
+                                (SVMmodel.getExclusiveItems())[i].get(j).setPrice((SVMmodel.getExclusiveItemRecord())[i].getPrice());
+                            }
                         }
+
 
                         // changes the price of the item in the slot
                         for (int j = 0; j < SVMmodel.getCURRENTnumberOfExclusiveSlots(); j++) {

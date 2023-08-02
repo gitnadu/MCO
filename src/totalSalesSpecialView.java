@@ -12,6 +12,8 @@ public class totalSalesSpecialView extends JFrame {
         salesTextArea = new javax.swing.JTextArea();
         returnButton = new javax.swing.JButton();
 
+        setResizable(false);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         totalSalesLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 36)); // NOI18N

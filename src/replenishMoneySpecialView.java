@@ -68,9 +68,11 @@ public class replenishMoneySpecialView extends JFrame {
         returnButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         returnButton.setText("Return");
 
-        eksButton.setText("❌");
+        eksButton.setText(" ");
+        eksButton.setBackground(Color.red);
 
-        checkButton.setText("✅");
+        checkButton.setText(" ");
+        checkButton.setBackground(Color.green);
 
         jLabel1.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         jLabel1.setText("Quantity: ");

@@ -89,6 +89,7 @@ public class maintenanceRVMview extends JFrame {
         newpriceTextfield.setVisible(false);// new price
 
         itemNameTextfield.setVisible(false);// item name to be restocked
+        setResizable(false);
 
         restockQuantityLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
         restockQuantityLabel.setText("Quantity:");

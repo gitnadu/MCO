@@ -12,9 +12,9 @@ public class replenishMoneySpecialController {
     // view of itself
     // view of the maintenance view
     // VM model
-    replenishMoneySpecialController(replenishMoneySpecialView replenishmoneyview, maintenanceSVMview maintenancesvmview,SpecialVendingMachine SVMmodel)
+    replenishMoneySpecialController(replenishMoneySpecialView replenishmoneyspecialview, maintenanceSVMview maintenancesvmview,SpecialVendingMachine SVMmodel)
     {
-        this.replenishmoneyspecialview = replenishmoneyview;
+        this.replenishmoneyspecialview = replenishmoneyspecialview;
         this.maintenancesvmview = maintenancesvmview;
         this.SVMmodel = SVMmodel;
 
@@ -24,7 +24,7 @@ public class replenishMoneySpecialController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                replenishmoneyview.setVisible(false);
+                replenishmoneyspecialview.setVisible(false);
                 maintenancesvmview.setVisible(true);
                 maintenancesvmview.setEnabled(true);
             }
@@ -34,13 +34,25 @@ public class replenishMoneySpecialController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                Integer quantity;
-                if (!(replenishmoneyview.getQuantityTextField().getText().compareTo("")==0))
-                {
-                    quantity = Integer.parseInt(replenishmoneyview.getQuantityTextField().getText());
+                boolean caught = false;
+                Integer quantity = 0;
 
-                    // add new money in the change bank
+                try {
+                    quantity = Integer.parseInt(replenishmoneyspecialview.getQuantityTextField().getText());
+                } catch (Exception f) {
+                    caught = true;
+                }
+                if(caught)
+                {
+                    replenishmoneyspecialview.getStatusTextfield().setText("Invalid input ");
+                }
+                else
+                {
                     (SVMmodel.getCash())[selectedBill].setCount((SVMmodel.getCash())[selectedBill].getCount() + quantity);
+                    (SVMmodel.getCash())[selectedBill].setTotalValue((SVMmodel.getCash())[selectedBill].getTotalValue() *(SVMmodel.getCash())[selectedBill].getCount());
+                    replenishmoneyspecialview.getStatusTextfield().setText("Money Added!");
+                    replenishmoneyspecialview.getQuantityTextField().setText("");
+                    System.out.print("Money added");
                 }
 
 
@@ -51,7 +63,7 @@ public class replenishMoneySpecialController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                replenishmoneyview.getQuantityTextField().setText("");
+                replenishmoneyspecialview.getQuantityTextField().setText("");
             }
         });
 
@@ -61,9 +73,9 @@ public class replenishMoneySpecialController {
             {
                 for(int i=0;i<7;i++)
                 {
-                    if (e.getSource() == (replenishmoneyview.getChangeButtons())[i])
+                    if (e.getSource() == (replenishmoneyspecialview.getChangeButtons())[i])
                     {
-                        replenishmoneyview.getStatusTextfield().setText("Adding "+ (SVMmodel.getCash())[i].getValue());
+                        replenishmoneyspecialview.getStatusTextfield().setText("Adding "+ (SVMmodel.getCash())[i].getValue());
                         selectedBill = i;
                     }
                 }

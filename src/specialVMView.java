@@ -92,7 +92,8 @@ public class specialVMView extends javax.swing.JFrame{
 
         resetButton.setText("↻");
 
-        refreshButton.setText("⟳");
+        refreshButton.setText("⟳⟳");
+        refreshButton.setPreferredSize(new Dimension(20,20));
 
 
         nameLabel.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 16)); // NOI18N
@@ -244,6 +245,7 @@ public class specialVMView extends javax.swing.JFrame{
 
         customizeTextArea.setColumns(20);
         customizeTextArea.setRows(5);
+        customizeTextArea.setFont((new java.awt.Font("UD Digi Kyokasho N-B", 0, 13)));
         customizeTextArea.setEditable(false);
         customizeScrollPane.setViewportView(customizeTextArea);
         customizeScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
@@ -252,6 +254,7 @@ public class specialVMView extends javax.swing.JFrame{
 
         customizeButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 18)); // NOI18N
         customizeButton.setText("Customize");
+        customizeButton.setEnabled(false);
 
         itemTrayTextArea.setColumns(20);
         itemTrayTextArea.setRows(5);
@@ -317,7 +320,6 @@ public class specialVMView extends javax.swing.JFrame{
                         .addGap(0, 112, Short.MAX_VALUE)
         );
 
-        OtherItemPanel.setBackground(new java.awt.Color(0, 0, 0));
 
         newItemPanel = new JPanel();
         itemPanels = new JPanel[12];
@@ -325,8 +327,9 @@ public class specialVMView extends javax.swing.JFrame{
         itemButtons = new JButton[12];
 
         itemTrayTextArea.setEditable(false);
+        setResizable(false);
 
-        newItemPanel.setSize(new Dimension(393,432));
+        newItemPanel.setSize(new Dimension(393,429));
         newItemPanel.setLayout(new GridLayout(4,3,6,6));
         for (int i=0;i<12;i++)
         {
@@ -503,6 +506,9 @@ public class specialVMView extends javax.swing.JFrame{
         return slotTextAreas;
     }
 
+    public JButton getCustomizeButton() {
+        return customizeButton;
+    }
 
     public JTextField getBalanceTextfield() {
         return balanceTextfield;
@@ -543,9 +549,6 @@ public class specialVMView extends javax.swing.JFrame{
         this.resetButton.addActionListener(actionListener);
     }
 
-    public void setstatusSVMTextfieldListener(MouseListener MouseListener) {
-        this.statusSVMTextField.addMouseListener(MouseListener);
-    }
 
     public void setpurchaseButtonListener(ActionListener actionListener) {
         this.purchaseButton.addActionListener(actionListener);

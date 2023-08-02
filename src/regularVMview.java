@@ -181,6 +181,7 @@ public class regularVMview extends javax.swing.JFrame{
             slotAreas[i].setRows(6);
             slotAreas[i].setSize(new Dimension(40, 40));
             slotAreas[i].setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 14));
+            slotAreas[i].setEditable(false);
         }
 
         for (int i=0;i<9;i++)
@@ -203,7 +204,7 @@ public class regularVMview extends javax.swing.JFrame{
         itemTrayTextfield.setHorizontalAlignment(JTextField.CENTER);
 
         changeTextArea.setEditable(false);
-        changeTextArea.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 11));
+        changeTextArea.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12));
         changeScrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0,0));
         changeScrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(0,0));
         changeScrollPane.setViewportView(changeTextArea);
@@ -262,6 +263,8 @@ public class regularVMview extends javax.swing.JFrame{
         statusRVMTextfield.setText("");
         statusRVMTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 14));
         statusRVMTextfield.setHorizontalAlignment(JTextField.CENTER);
+
+        setResizable(false);
 
         changeTextArea.setColumns(20);
         changeTextArea.setRows(5);

@@ -7,11 +7,8 @@ public class replenishMoneyController {
     replenishMoneyView replenishmoneyview;
     maintenanceRVMview maintenancervmview;
     RegularVendingMachine VMmodel;
-
     int selectedBill;
-    // view of itself
-    // view of the maintenance view
-    // VM model
+
     replenishMoneyController(replenishMoneyView replenishmoneyview, maintenanceRVMview maintenancervmview,RegularVendingMachine VMmodel)
     {
         this.replenishmoneyview = replenishmoneyview;
@@ -34,11 +31,27 @@ public class replenishMoneyController {
         {
             public void actionPerformed(ActionEvent e)
             {
-                Integer quantity;
-                quantity = Integer.parseInt(replenishmoneyview.getQuantityTextField().getText());
+                Boolean caught = false;
+                Integer quantity = 0;
+                try {
+                    quantity = Integer.parseInt(replenishmoneyview.getQuantityTextField().getText());
+                } catch (Exception f) {
+                    caught = true;
+                }
+                if(caught)
+                {
+                    replenishmoneyview.getStatusTextfield().setText("Invalid input ");
+                }
+                else
+                {
+                    (VMmodel.getCash())[selectedBill].setCount((VMmodel.getCash())[selectedBill].getCount() + quantity);
+                    (VMmodel.getCash())[selectedBill].setTotalValue((VMmodel.getCash())[selectedBill].getValue() * (VMmodel.getCash())[selectedBill].getCount());
 
-                // add new money in the change bank
-                (VMmodel.getCash())[selectedBill].setCount((VMmodel.getCash())[selectedBill].getCount() + quantity);
+                    replenishmoneyview.getStatusTextfield().setText("Money Added!");
+                    replenishmoneyview.getQuantityTextField().setText("");
+                    System.out.print("Money added");
+                }
+
 
             }
         });

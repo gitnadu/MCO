@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 /**
  * This class implements the slot to be used on the main function of vending machine.
  * It includes a list of items it has that can be sold, total number of items sold and the
@@ -13,60 +13,16 @@ public class Slot {
 
 
     /**
-     * Constructs a slot with the given item and its initial quantity. This also creates
-     * the item object, that can only be purchased through this slot.
+     * Constructs a slot with the given item.
      *
      * @param item the item to be placed in the slot
-     * @
+     *
      *
      */
     Slot(Item item)
     {
         this.primaryItem = item;
     }
-
-    /**
-     * This function sets a slot with an existing slot
-     *
-     * @param another another Slot
-     */
-
-    public void anotherSlot(Slot another)
-    {
-        this.primaryItem = another.getPrimaryItem();
-    }
-
-
-
-
-    /**
-     *
-     * Checks if the items in the slot are currently stocked
-     *
-     * @return boolean whether if the item is available or not
-     */
-
-
-
-    /**
-     *
-     * Adds stock to the given item
-     *
-     * @param stockQuantity  the stock quantity.
-     * @param item  the item.
-     */
-
-
-
-
-
-
-    /**
-     *
-     * Gets the total number of items sold by the slot
-     *
-     * @return the total sold
-     */
 
 
     /**
@@ -79,7 +35,6 @@ public class Slot {
 
         return primaryItem;
     }
-
 
     /**
      *

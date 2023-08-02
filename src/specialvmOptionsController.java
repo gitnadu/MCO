@@ -36,7 +36,7 @@ public class specialvmOptionsController {
                 specialvmoptionsview.getConfirmButton().setVisible(true);
                 specialvmoptionsview.getStatusTextfield().setVisible(true);
                 specialvmoptionsview.getStatusTextfield().setEditable(true);
-                specialvmoptionsview.getStatusTextfield().setText("Enter name ");
+                specialvmoptionsview.getStatusTextfield().setText("<Name>");
             }
         });
 
@@ -46,32 +46,13 @@ public class specialvmOptionsController {
             {
                 if (specialvendingmachine == null)
                 {
-                    specialvmoptionsview.getStatusTextfield().setText("No machine created...");
+                    specialvmoptionsview.getStatusTextfield().setText("Machine nonexistent..");
                 }
                 else
                 {
                     specialvmoptionsview.setVisible(false);
                     SVMController.getSpecialvmview().setVisible(true);
                 }
-            }
-        });
-
-        this.specialvmoptionsview.setmaintenanceButtonListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                if (specialvendingmachine == null)
-                {
-                    specialvmoptionsview.getStatusTextfield().setText("No Machine Created...");
-                }
-                else
-                {
-                    //maintenanceRVMview maintenancervmview = new maintenanceRVMview();
-                    //maintenanceRVMcontroller maintenanceRVMcontroller = new maintenanceRVMcontroller(maintenancervmview,specialvendingmachine,SVMview);
-                    //specialvmoptionsview.setVisible(false);
-                    //specialvmoptionsview.setEnabled(false);
-                }
-
             }
         });
 
@@ -90,7 +71,7 @@ public class specialvmOptionsController {
                 }
                 else
                 {
-                    specialvmoptionsview.getStatusTextfield().setText("Enter name ");
+                    specialvmoptionsview.getStatusTextfield().setText("Try again... ");
                 }
 
             }
@@ -102,7 +83,7 @@ public class specialvmOptionsController {
             {
                 if (specialvendingmachine == null)
                 {
-                    specialvmoptionsview.getStatusTextfield().setText("No Machine Created...");
+                    specialvmoptionsview.getStatusTextfield().setText("Machine nonexistent..");
                 }
                 else
                 {

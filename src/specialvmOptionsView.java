@@ -49,6 +49,8 @@ public class specialvmOptionsView extends JFrame {
         confirmButton.setVisible(false);
         confirmButton.setEnabled(false);
 
+        setResizable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
