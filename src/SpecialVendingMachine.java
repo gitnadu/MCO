@@ -121,14 +121,18 @@ public class SpecialVendingMachine extends RegularVendingMachine{
         return false;
     }
 
-    public void getCaloriesCustomizedItem()
+    public float getCaloriesCustomizedItem()
     {
         float sum = 0;
         // iterates over the calories of each item
         for(int i = 0; i <customizedItem.size();i++)
         {
+
             sum += customizedItem.get(i).getCalories();
+
         }
+
+        return sum;
     }
 
     public float getPriceCustomizedItem()
@@ -192,8 +196,6 @@ public class SpecialVendingMachine extends RegularVendingMachine{
 
             // deducts the money purchase to inserted money
             currentTransaction.deductPurchase(currentTransaction.getTotalAmount());
-
-            this.purchaseCustomizedItem(); // gets the item inside
 
             // adds to the vending machines total earnings
             this.totalEarnings += currentTransaction.getTotalAmount();

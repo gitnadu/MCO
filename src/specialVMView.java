@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 public class specialVMView extends javax.swing.JFrame{
 
@@ -38,9 +39,10 @@ public class specialVMView extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        statusSVMTextField.setEditable(false);
+
         balanceTextfield.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
         balanceTextfield.setAutoscrolls(false);
-        balanceTextfield.setFocusable(false);
         balanceTextfield.setEditable(false);
 
         returnButton.setFont(new java.awt.Font("UD Digi Kyokasho N-B", 0, 12)); // NOI18N
@@ -160,7 +162,7 @@ public class specialVMView extends javax.swing.JFrame{
         {
             slotPanels[i] = new JPanel();
             slotTextAreas[i] = new JTextArea();
-            slotButtons[i] = new JButton();
+            slotButtons[i] = new JButton(""+i);
         }
 
         // for the text area
@@ -185,7 +187,7 @@ public class specialVMView extends javax.swing.JFrame{
             slotPanels[i].setLayout(new BorderLayout());
             slotPanels[i].add(slotTextAreas[i],  BorderLayout.NORTH);
             slotPanels[i].add(slotButtons[i], BorderLayout.SOUTH);
-            slotButtons[i].setPreferredSize(new Dimension(20,15));
+            slotButtons[i].setPreferredSize(new Dimension(20,20));
         }
 
         // adds all the panels in the main panel
@@ -505,6 +507,13 @@ public class specialVMView extends javax.swing.JFrame{
         this.resetButton.addActionListener(actionListener);
     }
 
+    public void setstatusSVMTextFieldListener(MouseListener MouseListener) {
+        this.statusSVMTextField.addMouseListener(MouseListener);
+    }
+
+    public void setpurchaseButtonListener(ActionListener actionListener) {
+        this.purchaseButton.addActionListener(actionListener);
+    }
     public void setslotButtonsListener(ActionListener actionListener) {
         for(int i=0;i<9;i++)
         {
@@ -512,6 +521,39 @@ public class specialVMView extends javax.swing.JFrame{
         }
     }
 
+    public void setbaseButtonsListener(ActionListener actionListener) {
+        for(int i=0;i<3;i++)
+        {
+            this.baseButtons[i].addActionListener(actionListener);
+        }
+    }
+
+    public void setitemButtonsListener(ActionListener actionListener) {
+        for(int i=0;i<9;i++)
+        {
+            this.itemButtons[i].addActionListener(actionListener);
+        }
+    }
+
+    public JTextArea getItemTrayTextArea() {
+        return itemTrayTextArea;
+    }
+
+    public JTextArea getCustomizeTextArea() {
+        return customizeTextArea;
+    }
+
+    public JTextField getPriceTextfield() {
+        return priceTextfield;
+    }
+
+    public JTextField getCaloriesTextfield() {
+        return caloriesTextfield;
+    }
+
+    public JTextField getNameTextfield() {
+        return nameTextfield;
+    }
 
     // setVisible(true);
     // pack();
